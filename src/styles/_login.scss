@@ -1,0 +1,112 @@
+@import './variables';
+@import './mixins';
+
+.login-container {
+    @include flexCenter(column);
+    height: 90vh;
+
+    .greeting {
+        h1 {
+            font-size: 2em;
+            opacity: .7;
+        }
+    }
+
+    .login-field {
+        @include flexCenter(column);
+        margin-bottom: 100px;
+        padding: 30px;
+        border-radius: 12px;
+        background-color: $fourth-bg-color;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            
+
+            .input-field {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                
+
+                input {
+                    width: 370px;
+                    height: 30px;
+                    border-radius: 8px;
+                    border: 1px lightgrey solid;
+                }
+
+                input:focus {
+                    outline: green 2px solid;
+    
+                }
+            }
+
+            button {
+                padding: 5px 0px;
+                font-size: 1em;
+                background-color: $secondary-btn-color;
+                border: none;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .fb {
+                background-color: $btn-color;
+            }
+
+            button:hover, button:focus {
+                filter: brightness(1.2);
+            }
+
+            .err {   
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                .err-msg {
+                    color: red;
+                }
+            }
+        }
+
+        .sign-up {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            .link {
+                color: $fourth-text-color;
+            }
+        }
+
+
+    }
+}
+
+@media (max-width: 420px){
+    .login-container {
+        margin: 0px 20px;
+
+        .greeting {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        .login-field {    
+            form {
+                .input-field {               
+                    input {
+                        width: 80vw;
+                        height: 30px;
+                        border-radius: 8px;
+                        border: 1px lightgrey solid;
+                    }
+                }
+            }
+    
+    }
+}
+}
