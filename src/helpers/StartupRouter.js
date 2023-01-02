@@ -9,7 +9,8 @@ const StartupRouter = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data !== 'Logged in') {
-          localStorage.clear();
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
           navigate('/login');
         } else {
           navigate('/home');

@@ -8,6 +8,8 @@
         display: grid;
         grid-template-columns: 1fr 8fr;
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        gap: 150px;
+
     }
 }

@@ -1,4 +1,5 @@
 import CreatePost from '../Dashboard/CreatePost';
+import DisplayPosts from '../Dashboard/DisplayPosts';
 import SideBar from '../Dashboard/SideBar';
 import NavBar from '../Nav/NavBar';
 
@@ -15,6 +16,7 @@ const Home = () => {
         </div>
         <div className="dashboard-container">
           <CreatePost username={userName} />
+          <DisplayPosts />
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { defaultUserPic } from '../../assets/SVG/svg';
 
 const CreatePost = (props) => {
@@ -7,6 +6,7 @@ const CreatePost = (props) => {
   const [errorMsg, setErrorMsg] = useState([]);
 
   const token = `Bearer ${localStorage.getItem('token')}`;
+  const input = document.getElementById('text');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +28,6 @@ const CreatePost = (props) => {
           setErrorMsg(data);
         }
         setPost('');
-        const input = document.getElementById('text');
         input.value = '';
       });
   };
