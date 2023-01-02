@@ -1,0 +1,48 @@
+@import './variables';
+@import './mixins';
+
+.create-post {
+    display: flex;
+    justify-content: center;
+    
+    .create-post-container {
+        @include flexCenter(column);
+        width: 400px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+        background-color: $fourth-bg-color;
+        border: $border-color 1px solid;
+        gap: 10px;
+    
+        
+        .post-form {
+            display: flex;
+
+            svg {
+                height: 30px;
+                margin-right: 10px;
+            }
+
+            .input {
+                width: 300px;
+                resize: none;
+                
+            }
+        }
+
+        .btn-container {
+            display: flex;
+            width: 87%;
+            justify-content: flex-end;
+
+            button {
+
+            }
+        }
+
+        .error-ms {
+            color: red;
+        }
+}
+}

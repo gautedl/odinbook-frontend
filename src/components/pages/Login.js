@@ -38,7 +38,12 @@ const Login = () => {
       });
   };
 
-  const fbHandler = (e) => {};
+  const fbHandler = (e) => {
+    e.preventDefault();
+    fetch('/auth/facebook')
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   return (
     <div className="login-container">

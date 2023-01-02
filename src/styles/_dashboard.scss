@@ -1,0 +1,13 @@
+@import './variables';
+@import './mixins';
+
+.home {
+
+    .dashboard {
+        margin: 40px 60px;
+        display: grid;
+        grid-template-columns: 1fr 8fr;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -43,8 +43,6 @@ const SignUp = () => {
       });
   };
 
-  const fbHandler = (e) => {};
-
   return (
     <div className="login-container">
       <div className="greeting">
@@ -106,9 +104,6 @@ const SignUp = () => {
           </div>
           <div className="err">{errorMsg}</div>
           <button onClick={submitHandler}>Sign Up</button>
-          <button className="fb" onClick={fbHandler}>
-            Sign up with Facebook
-          </button>
         </form>
         <div className="sign-up">
           <p>Already a user?</p>{' '}

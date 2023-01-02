@@ -9,6 +9,7 @@ const StartupRouter = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data !== 'Logged in') {
+          localStorage.clear();
           navigate('/login');
         } else {
           navigate('/home');

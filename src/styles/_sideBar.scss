@@ -1,0 +1,20 @@
+@import './variables';
+@import './mixins';
+
+.side-bar-container {
+    height: 80%;
+    width: 300px;
+    background-color: $fourth-bg-color;
+    border: $border-color 1px solid;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+
+    .user {
+        @include flexCenter(row);
+        justify-content: flex-start;
+        svg {
+            height: 35px;
+        }
+    }
+}
