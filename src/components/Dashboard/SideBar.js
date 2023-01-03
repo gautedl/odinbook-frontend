@@ -18,7 +18,16 @@ const SideBar = (props) => {
       </div>
       <hr />
       <div className="friend-list">
-        {userFriends.length === 0 ? <h3>No friends</h3> : <>Friends</>}
+        {userFriends.length === 0 ? (
+          <h3>No friends</h3>
+        ) : (
+          <>
+            <h2>Friends:</h2>
+            {userFriends.map((friend) => (
+              <h3 key={friend._id}>{friend.name}</h3>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const PostCard = (props) => {
   const userID = JSON.parse(localStorage.getItem('user'))._id;
 
   useEffect(() => {
-    fetch(`/home/user/${props.user}`)
+    fetch(`/home/user/${props.user._id}`)
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, [props.user]);
@@ -42,7 +42,6 @@ const PostCard = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data !== 'Liked!') {
           setErr(data);
         }
@@ -79,7 +78,6 @@ const PostCard = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data !== 'Disliked!') {
           setErr(data);
         }

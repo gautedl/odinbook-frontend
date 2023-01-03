@@ -2,20 +2,26 @@ import { useState, useEffect } from 'react';
 import PostCard from '../Cards/PostCard';
 
 const DisplayPosts = () => {
-  const [ownPosts, setOwnPosts] = useState([]);
+  //   const [ownPosts, setOwnPosts] = useState([]);
+  //   const [friendsPosts, setFriendsPosts] = useState([]);
+  const [displayedPosts, setDisplayedPosts] = useState([]);
 
   useEffect(() => {
-    fetch('/post/get_own_posts')
+    fetch('/post/get_display_posts')
       .then((res) => res.json())
-      .then((data) => setOwnPosts(data));
+      .then((data) => {
+        setDisplayedPosts(data);
+      });
   }, []);
 
   return (
     <div className="posts-container">
-      {ownPosts.length === 0 ? (
+      {displayedPosts.length === 0 ? (
         <p>Loading...</p>
+      ) : displayedPosts === 'No posts' ? (
+        <p>No Posts..</p>
       ) : (
-        ownPosts.map((post) => (
+        displayedPosts.map((post) => (
           <PostCard
             // route={'post'}
             likes={post.likes}
