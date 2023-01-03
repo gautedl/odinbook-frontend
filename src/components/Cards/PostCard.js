@@ -50,7 +50,7 @@ const PostCard = (props) => {
           <svg
             width="25"
             height="25"
-            fill="#4c9ded"
+            fill="#13aff0"
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -107,7 +107,7 @@ const PostCard = (props) => {
       <svg
         width="25"
         height="25"
-        fill="#4c9ded"
+        fill="#13aff0"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
