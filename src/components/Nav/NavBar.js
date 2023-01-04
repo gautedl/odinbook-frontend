@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { defaultUserPic } from '../../assets/SVG/svg';
+import NotifsBox from './NotifsBox';
 import SearchBox from './SearchBox';
 
 const NavBar = () => {
@@ -10,14 +11,12 @@ const NavBar = () => {
   const [friendRequestNotifsLength, setFriendRequestNotifsLength] = useState(
     []
   );
+  const [showAlerts, setShowAlerts] = useState();
 
   const searchUser = (e) => {
     setSearchValue(e.target.value);
-    // if (e.target.value === '') {
-    //   setSearchField(undefined);
-    // }
-    // setSearchField(<SearchBox srcValue={e.target.value} />);
   };
+
   useEffect(() => {
     if (searchValue === '' || searchValue === undefined) {
       setSearchField(undefined);
@@ -25,18 +24,23 @@ const NavBar = () => {
       setSearchField(<SearchBox srcValue={searchValue} />);
     }
   }, [searchValue]);
+
   const showNotifs = () => {
-    console.log(friendRequestNotifs);
+    if (showAlerts === undefined) {
+      setShowAlerts(<NotifsBox />);
+    } else {
+      setShowAlerts(undefined);
+    }
   };
 
   useEffect(() => {
     fetch('/friend_request/show_recipient')
       .then((res) => res.json())
       .then((data) => {
-        setFriendRequestNotifs(data);
-        setFriendRequestNotifsLength(
-          <div className="notifs-quantity">{data.length}</div>
-        );
+        // Set so only pending is beeing counter
+        const length = data.filter((x) => x.status === 'pending').length;
+        setFriendRequestNotifsLength(length);
+        setFriendRequestNotifs(<div className="notifs-quantity">{length}</div>);
       });
   }, []);
 
@@ -88,6 +92,7 @@ const NavBar = () => {
         <div className="notifs-div">
           <svg
             onClick={showNotifs}
+            id="notif"
             fill="none"
             stroke="currentColor"
             strokeLinecap="round"
@@ -99,7 +104,10 @@ const NavBar = () => {
             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
-          {friendRequestNotifsLength}
+          {friendRequestNotifsLength === 0 ? null : friendRequestNotifs}
+          <div className="notifs-field">
+            {showAlerts === undefined ? <></> : showAlerts}
+          </div>
         </div>
       </div>
     </nav>

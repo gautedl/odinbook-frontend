@@ -56,6 +56,7 @@
             align-items: center;
             margin-top: 0px;
 
+
             .notifs-quantity {
                 display: inline-block;
                 position: relative;
@@ -85,6 +86,12 @@
                 border-top-color: transparent !important;
                 border-bottom-color: transparent !important;
                 border-color: #13aff0;
+            }
+
+            .notifs-field {
+                position: absolute;
+                top: 60px;
+                right: 5px;
             }
         }
     }
