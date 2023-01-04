@@ -51,6 +51,18 @@
             height: 35px;
         }
 
+        .profile-container {
+            display: flex;
+            align-items: center;
+            margin-top: 0px;
+
+            .profile-pop {
+                position: absolute;
+                top: 60px;
+                right: 40px;
+            }
+        }
+
         .notifs-div {
             display: flex;
             align-items: center;

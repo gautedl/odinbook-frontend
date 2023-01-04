@@ -68,7 +68,23 @@ const UserPage = () => {
   }, [id, token]);
 
   if (id === userID) {
-    return <></>;
+    return (
+      <>
+        <NavBar />
+        {user === undefined ? (
+          <></>
+        ) : (
+          <div className="user-container">
+            <div className="user-details">
+              {defaultUserPic}
+              <div className="name-friends-container">
+                <h1>{user.name}</h1>
+              </div>
+            </div>
+          </div>
+        )}
+      </>
+    );
   } else
     return (
       <>

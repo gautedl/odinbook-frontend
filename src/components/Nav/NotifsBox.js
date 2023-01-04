@@ -15,21 +15,6 @@ const NotifsBox = ({ notifsValue }) => {
       });
   }, []);
 
-  // const handleWindowClick = (e) => {
-  //   if (e.target.id !== 'notif') {
-  //     console.log('yo');
-  //     setShowNotifs(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener('click', handleWindowClick);
-
-  //   return () => {
-  //     window.removeEventListener('click', handleWindowClick);
-  //   };
-  // }, []);
-
   const acceptRequest = (senderId) => {
     console.log(senderId);
     fetch(`/friend_req/accept/${senderId}`, {

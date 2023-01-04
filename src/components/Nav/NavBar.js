@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { defaultUserPic } from '../../assets/SVG/svg';
+import { defaultUserPicNav } from '../../assets/SVG/svg';
 import NotifsBox from './NotifsBox';
+import ProfilePop from './ProfilePop';
 import SearchBox from './SearchBox';
 
 const NavBar = () => {
@@ -12,6 +13,7 @@ const NavBar = () => {
     []
   );
   const [showAlerts, setShowAlerts] = useState();
+  const [showProfilePop, setShowProfilePop] = useState();
 
   const searchUser = (e) => {
     setSearchValue(e.target.value);
@@ -32,6 +34,33 @@ const NavBar = () => {
       setShowAlerts(undefined);
     }
   };
+
+  const showDetailPop = () => {
+    if (showProfilePop === undefined) {
+      setShowProfilePop(<ProfilePop open={true} />);
+    } else {
+      setShowProfilePop(undefined);
+      <ProfilePop open={false} />;
+    }
+  };
+
+  const handleWindowClick = (e) => {
+    if (e.target.id !== 'notif') {
+      setShowAlerts(undefined);
+    }
+    if (e.target.id !== 'profile-pic') {
+      setShowProfilePop(undefined);
+      <ProfilePop open={false} />;
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleWindowClick);
+
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
 
   useEffect(() => {
     fetch('/friend_request/show_recipient')
@@ -69,9 +98,14 @@ const NavBar = () => {
           name="src"
           id="search"
         ></input>
-        <div className="search-field" id="search">
-          {searchField === undefined ? <></> : searchField}
-        </div>
+
+        {searchField === undefined ? (
+          <></>
+        ) : (
+          <div className="search-field" id="search">
+            {searchField}
+          </div>
+        )}
       </div>
       <div className="route-container">
         <Link to="/settings">
@@ -88,7 +122,16 @@ const NavBar = () => {
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
         </Link>
-        <>{defaultUserPic}</>
+        <div className="profile-container" id="profile-pic">
+          <div onClick={showDetailPop} id="profile-pic">
+            {defaultUserPicNav}
+          </div>
+          {showProfilePop === undefined ? (
+            <></>
+          ) : (
+            <div className="profile-pop">{showProfilePop}</div>
+          )}
+        </div>
         <div className="notifs-div">
           <svg
             onClick={showNotifs}
@@ -105,9 +148,12 @@ const NavBar = () => {
             <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
           </svg>
           {friendRequestNotifsLength === 0 ? null : friendRequestNotifs}
-          <div className="notifs-field">
-            {showAlerts === undefined ? <></> : showAlerts}
-          </div>
+
+          {showAlerts === undefined ? (
+            <></>
+          ) : (
+            <div className="notifs-field">{showAlerts}</div>
+          )}
         </div>
       </div>
     </nav>
