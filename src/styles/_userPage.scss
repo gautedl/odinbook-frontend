@@ -1,20 +1,99 @@
 @import './variables';
 @import './mixins';
 
-.user-container {
-    display: flex;
-    justify-content: center;
+.user-page-container {
+    // margin: 0px 20em;
+}
 
-    .user-details {
-        display: flex;
-        align-items: flex-end;
-        svg {
-            height: 200px;
+.user-page {
+    display: flex;
+    padding: 0px 20em;
+    // width: 100%;
+    background-color: $fourth-bg-color;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
+    
+    .user-container {
+        width: 100%;
+        .profile-header {
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            // margin: 50px 20em;
+            margin-top: 50px;
+
+            
+            .user-details {
+            display: flex;
+            align-items: center;
+            
+            .profile-pic-container {
+                padding: 0;
+                
+                .profile-pic {
+                    svg {
+                        height: 200px;
+                        border-radius: 50%;
+                    }
+                }
+                
+                .change-profile-pic {
+                    display: flex;
+                    position: relative;
+                    justify-content: flex-end;
+                    top: -50px;
+                    right: 25px;
+                    z-index: 2;
+                    svg {
+                        height: 30px;
+                        border: solid 1px white;
+                        border-radius: 50%;
+                        background-color: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            .name-friends-container {
+
+                .friend-pics {
+                    display: flex;
+                    
+                    
+                    svg {
+                        margin-right: -8px;
+                        border-radius: 50%;
+                        height: 25px;
+                        background-color: white;
+                        
+                    }
+                }
+
+                .friend-pop {
+                    position: absolute;
+                }
+                }
+            }
+        
+            .btn-container {
+                margin-bottom: 50px;
+                margin-left: 200px;
+            }
         }
 
         .btn-container {
-            margin-bottom: 20px;
-            margin-left: 200px;
+            margin-bottom: 50px;
+
+            
+            svg {
+                height: 20px;
+            }
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -1,0 +1,23 @@
+@import './variables';
+@import './mixins';
+
+.pop-card-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $fourth-bg-color;
+    padding: 15px 25px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 3px 1px;
+
+    .pop-grid {
+        display: flex;
+
+        svg {
+            height: 70px;
+        }
+    }
+
+    .pop-card-btn-container {
+        display: flex;
+        gap: 15px;
+    }
+}
