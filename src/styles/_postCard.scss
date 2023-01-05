@@ -32,21 +32,81 @@
             font-size: .7em;
         }
 
-        .like-container {
+        .like-comments {
             display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 35px;
 
-            button {
-                padding: 5px 0px;
-                font-size: 1em;
-                background-color: rgba(226, 63, 63, 0.979);
-                border: none;
+            .click-comments {
+                text-decoration: underline;
                 cursor: pointer;
-                border-radius: 4px;
-                width: 100px;
-    
             }
+            
+            .like-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                
+                button {
+                    padding: 5px 0px;
+                    font-size: 1em;
+                    background-color: rgba(226, 63, 63, 0.979);
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    width: 100px;
+                    
+                }
+            }
+        }
+    }
+
+    .add-comment-container {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+
+        svg {
+            height: 30px;
+
+        }
+
+        .post-btn {
+            position: relative;
+            right: 40px;
+            cursor: pointer;
+        }
+
+        textarea {
+            margin-left: 10px;
+            padding-right: 40px !important;
+            width: 75%;
+            padding: 10px;
+            border: none;
+            background-color: $fifth-bg-color;
+            border-radius: 16px;
+            resize: none;
+        }
+
+        textarea:focus {
+            outline-color: $secondary-text-color;
+        }
+
+        .search-field {
+            position: absolute;
+            top: 60px;
+            padding-left: 32px
+        }
+    }
+
+    .err-cont {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        p {
+            color: red;
         }
     }
     

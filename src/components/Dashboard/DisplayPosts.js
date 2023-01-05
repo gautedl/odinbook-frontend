@@ -31,6 +31,7 @@ const DisplayPosts = () => {
             id={post._id}
             user={post.user}
             likedByUsers={post.likedByUser}
+            comments={post.comments}
           />
         ))
       )}

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { defaultUserPic } from '../../assets/SVG/svg';
+import CommentsCard from './CommentsCard';
 
 const PostCard = (props) => {
   const [likes, setLikes] = useState(props.likes);
   const [err, setErr] = useState([]);
   const [user, setUser] = useState();
+  const [comment, setComment] = useState();
+  const [showCommentsPost, setShowCommentsPost] = useState();
 
   const token = `Bearer ${localStorage.getItem('token')}`;
   const userID = JSON.parse(localStorage.getItem('user'))._id;
@@ -138,6 +141,35 @@ const PostCard = (props) => {
     )
   );
 
+  const postComment = () => {
+    const newComment = {
+      text: comment,
+    };
+
+    fetch(`/comment/${props.id}/create_comment`, {
+      method: 'POST',
+      body: JSON.stringify(newComment),
+      headers: {
+        Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data !== 'posted') {
+          setErr(data);
+        }
+      });
+  };
+
+  const showComments = () => {
+    if (showCommentsPost === undefined) {
+      setShowCommentsPost(<CommentsCard comments={props.comments} />);
+    } else {
+      setShowCommentsPost(undefined);
+    }
+  };
+
   return (
     <div className="post-card">
       {user === undefined ? (
@@ -149,15 +181,51 @@ const PostCard = (props) => {
           <p className="text">{props.text}</p>
           <div className="footer-container">
             <p className="date">{date_formated}</p>
-            <div className="like-container">
-              {likeButton}
-              {likes}
+            <div className="like-comments">
+              {props.comments.length === 0 ? (
+                <></>
+              ) : (
+                <p className="click-comments" onClick={showComments}>
+                  {props.comments.length} Comments
+                </p>
+              )}
+
+              <div className="like-container">
+                {likeButton}
+                {likes}
+              </div>
             </div>
           </div>
+          <div className="add-comment-container">
+            {defaultUserPic}
+            <textarea
+              placeholder="Add Comment"
+              type="text"
+              onChange={(e) => {
+                setComment(e.target.value);
+              }}
+              name="comment"
+            />
+            <svg
+              onClick={postComment}
+              className="post-btn"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M22 2 11 13"></path>
+              <path d="m22 2-7 20-4-9-9-4 20-7z"></path>
+            </svg>
+          </div>
+          {showCommentsPost}
           {err.map((err, i) => (
-            <p className="error-msg" key={i}>
-              {err.message}
-            </p>
+            <div key={i} className="err-cont">
+              <p className="error-msg">{err.msg}</p>
+            </div>
           ))}
         </>
       )}

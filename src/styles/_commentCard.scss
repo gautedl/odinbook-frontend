@@ -1,0 +1,55 @@
+@import './variables';
+@import './mixins';
+
+.single-comment {
+    display: flex;
+    width: 100%;
+    // justify-content: center;
+    // align-items: center;
+    margin-top: 15px;
+    padding-left: 13px;
+
+    .comment-info {
+        .comment-box {
+            display: inline-block;
+            margin-left: 10px;
+
+            .box {
+                display: flex;
+                flex-direction: column;
+                background-color: $fifth-bg-color;
+                padding: 7px 10px;
+                gap: 7px;
+                border-radius: 16px;
+                max-width: 500px;
+
+                h3 {
+                    margin: 0;
+                    opacity: .8;
+                }
+
+                span {
+                    word-wrap: break-word;
+                    display: inline-block;
+                }
+            }
+
+        }
+        
+    }
+    .comment-info-footer {
+        display: flex;
+        padding-left: 7px;
+        gap: 20px;
+        font-size: .8em;
+
+        .likes {
+            svg {
+                height: 20px;
+            }
+
+            display: flex;
+            align-items: center;
+        }
+    }
+}
