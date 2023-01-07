@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { defaultUserPic } from '../../assets/SVG/svg';
 import UserCard from '../Cards/UserCard';
+import axios from 'axios';
+import { Buffer } from 'buffer';
 
 const UserPageHeader = ({ user, userFriends, commonFriends }) => {
+  console.log(user);
   const { id } = useParams();
   //   const [user, setUser] = useState();
   //   const [commonFriends, setCommonFriends] = useState();
@@ -12,28 +15,51 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
   const [friendPopup, setFriendPopup] = useState();
   // const [errMsg, setErrMsg] = useState();
 
+  const [image, setImage] = useState();
+
   const userID = JSON.parse(localStorage.getItem('user'))._id;
   const token = `Bearer ${localStorage.getItem('token')}`;
 
-  //   useEffect(() => {
-  //     const fetchUserData = async () => {
-  //       const [userResponse, friendList] = await Promise.all([
-  //         fetch(`/home/user/${id}`),
-  //         fetch('/user/getFriends'),
-  //       ]);
-  //       const userData = await userResponse.json();
-  //       const getFriends = await friendList.json();
+  const hiddenFileInput = useRef(null);
 
-  //       return [userData, getFriends];
-  //     };
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const [userResponse, friendList] = await Promise.all([
+  //       fetch(`/home/user/${id}`),
+  //       fetch('/user/getFriends'),
+  //     ]);
+  //     const userData = await userResponse.json();
+  //     const getFriends = await friendList.json();
 
-  //     fetchUserData().then((data) => {
-  //       setUser(data[0]);
-  //       setUserFriends(data[1]);
-  //       const equalFriends = data[0].friends.filter((el) => data[1].includes(el));
-  //       setCommonFriends(equalFriends);
-  //     });
-  //   }, [id]);
+  //     return [userData, getFriends];
+  //   };
+
+  //   fetchUserData().then((data) => {
+  //     setUser(data[0]);
+  //     setUserFriends(data[1]);
+  //     const equalFriends = data[0].friends.filter((el) => data[1].includes(el));
+  //     setCommonFriends(equalFriends);
+  //   });
+  // }, [id]);
+
+  // useEffect(() => {
+  //   if (user.profilePicture) {
+  //     const base64String = btoa(
+  //       String.fromCharCode(...new Uint8Array(user.profilePicture.data.data))
+  //     );
+
+  //     console.log(user.profilePicture);
+
+  //     const imageUrl = `data:image/jpg;base64,${base64String}`;
+
+  //     console.log(user.profilePicture.data.data.toString('base64'));
+  //     console.log(imageUrl);
+
+  //     setImage(<img src={imageUrl} alt="" />);
+  //   } else {
+  //     setImage(defaultUserPic);
+  //   }
+  // }, [user.profilePicture])
 
   useEffect(() => {
     const addFriend = () => {
@@ -68,7 +94,21 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
           setFriendReqBtn(<button>Answer Request</button>);
         }
       });
-  }, [id, token]);
+
+    if (user.profilePicture) {
+      const imageData = Buffer.from(user.profilePicture.data.data).toString(
+        'base64'
+      );
+
+      console.log(typeof imageData);
+
+      const imageUrl = `data:${user.profilePicture.contentType};base64,${imageData}`;
+
+      setImage(<img src={imageUrl} alt="" />);
+    } else {
+      setImage(defaultUserPic);
+    }
+  }, [id, token, user.profilePicture]);
 
   const profilePopup = (userPop) => {
     setFriendPopup(
@@ -85,6 +125,25 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
     setFriendPopup(undefined);
   };
 
+  const changeProfilePic = () => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleFileChange = async (e) => {
+    try {
+      const file = await e.target.files[0];
+
+      const fd = new FormData();
+      fd.append('profilePicture', file);
+
+      const response = await axios.post('/user/upload_profile_picture', fd, {});
+
+      console.log(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   if (id === userID) {
     return (
       <>
@@ -96,9 +155,17 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
               <div className="profile-header">
                 <div className="user-details">
                   <div className="profile-pic-container">
-                    <div className="profile-pic">{defaultUserPic}</div>
+                    <div className="profile-pic">{image}</div>
                     <div className="change-profile-pic">
+                      <input
+                        type="file"
+                        ref={hiddenFileInput}
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                        name="profilePicture"
+                      />
                       <svg
+                        onClick={changeProfilePic}
                         fill="none"
                         stroke="currentColor"
                         strokeLinecap="round"
