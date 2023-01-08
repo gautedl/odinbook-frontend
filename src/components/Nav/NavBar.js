@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { defaultUserPicNav } from '../../assets/SVG/svg';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 import NotifsBox from './NotifsBox';
 import ProfilePop from './ProfilePop';
 import SearchBox from './SearchBox';
@@ -14,6 +15,7 @@ const NavBar = () => {
   );
   const [showAlerts, setShowAlerts] = useState();
   const [showProfilePop, setShowProfilePop] = useState();
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const searchUser = (e) => {
     setSearchValue(e.target.value);
@@ -37,7 +39,7 @@ const NavBar = () => {
 
   const showDetailPop = () => {
     if (showProfilePop === undefined) {
-      setShowProfilePop(<ProfilePop open={true} />);
+      setShowProfilePop(<ProfilePop open={true} user={user} />);
     } else {
       setShowProfilePop(undefined);
       <ProfilePop open={false} />;
@@ -124,7 +126,13 @@ const NavBar = () => {
         </Link>
         <div className="profile-container" id="profile-pic">
           <div onClick={showDetailPop} id="profile-pic">
-            {defaultUserPicNav}
+            {user === undefined ? (
+              <></>
+            ) : user.profilePicture ? (
+              <ProfilePicture id="profile-pic" user={user} />
+            ) : (
+              defaultUserPicNav
+            )}
           </div>
           {showProfilePop === undefined ? (
             <></>

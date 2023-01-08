@@ -14,12 +14,16 @@
         @include flexCenter(row);
         justify-content: flex-start;
         gap: 15px;
-        svg {
-            height: 35px;
+        svg, img {
+            height: 45px;
+            border-radius: 50%;
         }
     }
 
     .friend-list {
+        @include flexCenter(column);
+        align-items: flex-start;
+        gap: 10px;
         h2 {
             font-size: 1.2em;
             font-weight: 600;
@@ -29,6 +33,20 @@
         h3 {
             margin-bottom: 0px;
             opacity: .6;
+        }
+
+        .friend {
+            @include flexCenter(row);
+            justify-content: flex-start;
+            gap: 10px;
+            img, svg {
+                height: 40px;
+                border-radius: 50%;
+            }
+
+            h3 {
+                margin: 0px;
+            }
         }
     }
 }

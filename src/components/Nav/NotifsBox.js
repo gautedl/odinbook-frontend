@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AcceptButton, DeclineButton } from '../HelperComponents/Buttons';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const NotifsBox = ({ notifsValue }) => {
   const [friendRequestNotifs, setFriendRequestNotifs] = useState();
@@ -11,6 +12,7 @@ const NotifsBox = ({ notifsValue }) => {
     fetch('/friend_request/show_recipient')
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setFriendRequestNotifs(data);
       });
   }, []);
@@ -67,6 +69,7 @@ const NotifsBox = ({ notifsValue }) => {
               } else
                 return (
                   <li key={data._id} id="notif">
+                    <ProfilePicture user={data.sender} />
                     {data.sender.name}{' '}
                     <div className="btn-container">
                       {<AcceptButton click={() => acceptRequest(data._id)} />}

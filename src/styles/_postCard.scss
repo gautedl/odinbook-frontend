@@ -12,8 +12,9 @@
     box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
     margin-bottom: 20px;
 
-    svg {
-        height: 30px;
+    svg, img {
+        height: 50px;
+        border-radius: 50%;
     }
 
     h1 {

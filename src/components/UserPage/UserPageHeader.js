@@ -4,9 +4,9 @@ import { defaultUserPic } from '../../assets/SVG/svg';
 import UserCard from '../Cards/UserCard';
 import axios from 'axios';
 import { Buffer } from 'buffer';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const UserPageHeader = ({ user, userFriends, commonFriends }) => {
-  console.log(user);
   const { id } = useParams();
   const [FriendReqBtn, setFriendReqBtn] = useState();
   const [friendPopup, setFriendPopup] = useState();
@@ -57,8 +57,6 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
         'base64'
       );
 
-      console.log(typeof imageData);
-
       const imageUrl = `data:${user.profilePicture.contentType};base64,${imageData}`;
 
       setImage(<img src={imageUrl} alt="" />);
@@ -73,6 +71,7 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
         id={userPop._id}
         name={userPop.name}
         friendsID={userPop.friends}
+        user={userPop}
         curUser={user}
       />
     );
@@ -112,7 +111,9 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
               <div className="profile-header">
                 <div className="user-details">
                   <div className="profile-pic-container">
-                    <div className="profile-pic">{image}</div>
+                    <div className="profile-pic">
+                      <ProfilePicture user={user} />
+                    </div>
                     <div className="change-profile-pic">
                       <input
                         type="file"
@@ -147,7 +148,7 @@ const UserPageHeader = ({ user, userFriends, commonFriends }) => {
                           className="user-pic"
                           key={friend._id}
                         >
-                          {defaultUserPic}
+                          <ProfilePicture user={friend} />
                         </div>
                       ))}
                     </div>

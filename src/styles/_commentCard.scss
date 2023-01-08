@@ -9,6 +9,13 @@
     margin-top: 15px;
     padding-left: 13px;
 
+    .user-pic {
+        img {
+
+            height: 40px;
+        }
+    }
+
     .comment-info {
         .comment-box {
             display: inline-block;

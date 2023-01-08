@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { defaultUserPic } from '../../assets/SVG/svg';
 import CommentsCard from './CommentsCard';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const PostCard = (props) => {
   const [likes, setLikes] = useState(props.likes);
@@ -176,7 +177,7 @@ const PostCard = (props) => {
         <p>Loading...</p>
       ) : (
         <>
-          {defaultUserPic}
+          <ProfilePicture user={user} />
           <h1 className="user">{user.name}</h1>
           <p className="text">{props.text}</p>
           <div className="footer-container">

@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { defaultUserPic } from '../../assets/SVG/svg';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const ProfilePop = ({ open }) => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -32,7 +33,7 @@ const ProfilePop = ({ open }) => {
           <ul>
             <Link to={`/user/page/${user._id}`}>
               <li>
-                {defaultUserPic}
+                <ProfilePicture user={user} />
                 <h3>{user.name}</h3>
               </li>
             </Link>

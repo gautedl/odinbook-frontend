@@ -46,9 +46,10 @@
         @include flexCenter(row);
         gap: 2vw;
 
-        svg {
+        svg, img {
             cursor: pointer;
             height: 35px;
+            border-radius: 50%;
         }
 
         .profile-container {

@@ -12,8 +12,9 @@
     .pop-grid {
         display: flex;
 
-        svg {
+        svg, img {
             height: 70px;
+            border-radius: 50%;
         }
     }
 

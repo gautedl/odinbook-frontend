@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { defaultUserPic } from '../../assets/SVG/svg';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const SideBar = (props) => {
   const [userFriends, setUserFriends] = useState([]);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     fetch('/user/getFriends')
@@ -13,7 +15,7 @@ const SideBar = (props) => {
   return (
     <div className="side-bar-container">
       <div className="user">
-        {defaultUserPic}
+        <ProfilePicture user={user} />
         <h1>{props.username}</h1>
       </div>
       <hr />
@@ -24,7 +26,10 @@ const SideBar = (props) => {
           <>
             <h2>Friends:</h2>
             {userFriends.map((friend) => (
-              <h3 key={friend._id}>{friend.name}</h3>
+              <div className="friend" key={friend._id}>
+                <ProfilePicture user={friend} />
+                <h3>{friend.name}</h3>
+              </div>
             ))}
           </>
         )}

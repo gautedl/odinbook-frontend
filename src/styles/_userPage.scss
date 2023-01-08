@@ -31,14 +31,11 @@
                 padding: 0;
                 
                 .profile-pic {
-                    img {
+                    img, svg {
                         width: 200px;
                         border-radius: 50%;
                     }
-                    svg {
-                        height: 200px;
-                        border-radius: 50%;
-                    }
+                    
                 }
                 
                 .change-profile-pic {
@@ -64,7 +61,7 @@
                     display: flex;
                     
                     
-                    svg {
+                    svg, img {
                         margin-right: -8px;
                         border-radius: 50%;
                         height: 25px;

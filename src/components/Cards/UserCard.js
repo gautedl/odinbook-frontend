@@ -1,4 +1,5 @@
 import { defaultUserPic } from '../../assets/SVG/svg';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const UserCard = (props) => {
   console.log(props);
@@ -9,7 +10,9 @@ const UserCard = (props) => {
   return (
     <div className="pop-card-container">
       <div className="pop-grid">
-        <div className="profile-pic">{defaultUserPic}</div>
+        <div className="profile-pic">
+          <ProfilePicture user={props.user} />
+        </div>
         <div className="user-info">
           <h2>{props.name}</h2>
           <div className="common-friends">

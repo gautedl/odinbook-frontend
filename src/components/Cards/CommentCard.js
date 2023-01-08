@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { defaultUserPic } from '../../assets/SVG/svg';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 dayjs.extend(relativeTime);
 
 const CommentCard = (props) => {
@@ -132,7 +133,9 @@ const CommentCard = (props) => {
 
   return (
     <div className="single-comment">
-      <div className="user-pic">{defaultUserPic}</div>
+      <div className="user-pic">
+        <ProfilePicture user={props.user} />
+      </div>
       <div className="comment-info">
         <div className="comment-box">
           <div className="box">
