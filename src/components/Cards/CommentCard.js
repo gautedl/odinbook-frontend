@@ -13,9 +13,8 @@ const CommentCard = (props) => {
   const token = `Bearer ${localStorage.getItem('token')}`;
 
   const date = new Date(props.createdAt);
-  const date_formated = date.toISOString().split('T')[0];
 
-  const timePassed = dayjs(date_formated).fromNow(true);
+  const timePassed = dayjs(date).fromNow(true);
 
   const getLikes = () => {
     fetch(`/comment/${props.id}/get_likes`)

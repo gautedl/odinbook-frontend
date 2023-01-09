@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const SearchBox = ({ srcValue }) => {
   const [searchResults, setSearchResults] = useState();
@@ -51,7 +52,10 @@ const SearchBox = ({ srcValue }) => {
               } else {
                 return (
                   <Link key={data._id} to={`/user/page/${data._id}`}>
-                    <li id="search">{data.name}</li>
+                    <li id="search">
+                      <ProfilePicture user={data} />
+                      {data.name}
+                    </li>
                   </Link>
                 );
               }

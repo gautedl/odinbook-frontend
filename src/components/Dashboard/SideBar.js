@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { defaultUserPic } from '../../assets/SVG/svg';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const SideBar = (props) => {

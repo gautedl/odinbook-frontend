@@ -12,6 +12,11 @@
     box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
     margin-bottom: 20px;
 
+    .text {
+        word-wrap: break-word;
+        display: inline-block;
+    }
+
     svg, img {
         height: 50px;
         border-radius: 50%;
@@ -28,6 +33,7 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         p {
             font-size: .7em;

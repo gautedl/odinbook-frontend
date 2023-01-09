@@ -1,14 +1,19 @@
-import { defaultUserPic } from '../../assets/SVG/svg';
+import { useNavigate } from 'react-router-dom';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const UserCard = (props) => {
-  console.log(props);
   const equalFriends = props.curUser.friends.filter((el) =>
     props.friendsID.includes(el)
   );
 
+  const navigate = useNavigate();
+
+  const goToUser = () => {
+    navigate(`/user/page/${props.user._id}`);
+  };
+
   return (
-    <div className="pop-card-container">
+    <div className="pop-card-container" onMouseLeave={props.leave}>
       <div className="pop-grid">
         <div className="profile-pic">
           <ProfilePicture user={props.user} />
@@ -25,8 +30,7 @@ const UserCard = (props) => {
         </div>
       </div>
       <div className="pop-card-btn-container">
-        <button>Go To User</button>
-        <button>Add Friend</button>
+        <button onClick={goToUser}>Go To User</button>
       </div>
     </div>
   );

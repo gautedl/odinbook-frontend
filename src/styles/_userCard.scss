@@ -2,15 +2,16 @@
 @import './mixins';
 
 .pop-card-container {
-    display: flex;
-    flex-direction: column;
+    @include flexCenter(column);
     background-color: $fourth-bg-color;
     padding: 15px 25px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 3px 1px;
     border-radius: 8px;
+    width: 250px;
 
     .pop-grid {
         display: flex;
+        gap: 10px;
 
         svg, img {
             height: 70px;

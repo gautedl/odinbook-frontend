@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PostCard from '../Cards/PostCard';
+import Loading from '../HelperComponents/Loading';
 
 const DisplayPosts = () => {
   //   const [ownPosts, setOwnPosts] = useState([]);
@@ -17,7 +18,7 @@ const DisplayPosts = () => {
   return (
     <div className="posts-container">
       {displayedPosts.length === 0 ? (
-        <p>Loading...</p>
+        <Loading />
       ) : displayedPosts === 'No posts' ? (
         <p>No Posts..</p>
       ) : (
