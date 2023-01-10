@@ -12,6 +12,8 @@ const UserCard = (props) => {
     navigate(`/user/page/${props.user._id}`);
   };
 
+  const sendMsg = () => {};
+
   return (
     <div className="pop-card-container" onMouseLeave={props.leave}>
       <div className="pop-grid">
@@ -31,6 +33,7 @@ const UserCard = (props) => {
       </div>
       <div className="pop-card-btn-container">
         <button onClick={goToUser}>Go To User</button>
+        <button onClick={sendMsg}>Send msg</button>
       </div>
     </div>
   );

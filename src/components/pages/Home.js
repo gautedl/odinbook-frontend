@@ -15,8 +15,8 @@ const Home = () => {
           <SideBar id={userID} username={userName} />
         </div>
         <div className="dashboard-container">
-          <CreatePost username={userName} />
-          <DisplayPosts />
+          <CreatePost />
+          <DisplayPosts route="get_display_posts" />
         </div>
       </div>
     </div>

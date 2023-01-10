@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { defaultUserPic } from '../../assets/SVG/svg';
+import ProfilePicture from '../HelperComponents/ProfilePicture';
 
-const CreatePost = (props) => {
+const CreatePost = () => {
   const [post, setPost] = useState();
   const [errorMsg, setErrorMsg] = useState([]);
 
   const token = `Bearer ${localStorage.getItem('token')}`;
   const input = document.getElementById('text');
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,12 +37,12 @@ const CreatePost = (props) => {
     <div className="create-post">
       <div className="create-post-container">
         <form className="post-form">
-          {defaultUserPic}
+          <ProfilePicture user={user} />
           {/* Switch to <div contenteditable so rezise is smoother */}
           <textarea
             className="input"
             id="text"
-            placeholder={`What's on your mind, ${props.username}`}
+            placeholder={`What's on your mind, ${user.name}`}
             name="text"
             onChange={(e) => {
               setPost(e.target.value);

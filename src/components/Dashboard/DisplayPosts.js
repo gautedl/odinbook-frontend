@@ -2,18 +2,18 @@ import { useState, useEffect } from 'react';
 import PostCard from '../Cards/PostCard';
 import Loading from '../HelperComponents/Loading';
 
-const DisplayPosts = () => {
+const DisplayPosts = ({ route }) => {
   //   const [ownPosts, setOwnPosts] = useState([]);
   //   const [friendsPosts, setFriendsPosts] = useState([]);
   const [displayedPosts, setDisplayedPosts] = useState([]);
 
   useEffect(() => {
-    fetch('/post/get_display_posts')
+    fetch(`/post/${route}`)
       .then((res) => res.json())
       .then((data) => {
         setDisplayedPosts(data);
       });
-  }, []);
+  }, [route]);
 
   return (
     <div className="posts-container">

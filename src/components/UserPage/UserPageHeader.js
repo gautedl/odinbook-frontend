@@ -8,6 +8,8 @@ const UserPageHeader = ({ user }) => {
   const { id } = useParams();
   const [FriendReqBtn, setFriendReqBtn] = useState();
   const [friendPopup, setFriendPopup] = useState();
+  const [showPopup, setShowPopup] = useState(false);
+  const popupRef = useRef(null);
 
   const userID = JSON.parse(localStorage.getItem('user'))._id;
   const token = `Bearer ${localStorage.getItem('token')}`;
@@ -40,9 +42,9 @@ const UserPageHeader = ({ user }) => {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M12.48 7.44a6 6 0 1 1-5.456 3.497.6.6 0 0 0-1.09-.5A7.2 7.2 0 1 0 12.48 6.24v1.2Z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                   <path d="M12.48 9.199V4.48a.3.3 0 0 0-.492-.23L9.156 6.608a.3.3 0 0 0 0 .461l2.832 2.36a.3.3 0 0 0 .492-.231Z"></path>
                 </svg>
@@ -57,6 +59,7 @@ const UserPageHeader = ({ user }) => {
     fetch(`/friend_request/${id}/find`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data === 'Not sent') {
           setFriendReqBtn(
             <button onClick={addFriend}>
@@ -76,11 +79,26 @@ const UserPageHeader = ({ user }) => {
           );
         } else if (data === 'Request sent') {
           setFriendReqBtn(
-            <button onClick={deleteReq}>Undo Friend Request</button>
+            <button onClick={deleteReq}>
+              {' '}
+              <svg
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12.48 7.44a6 6 0 1 1-5.456 3.497.6.6 0 0 0-1.09-.5A7.2 7.2 0 1 0 12.48 6.24v1.2Z"
+                  clipRule="evenodd"
+                ></path>
+                <path d="M12.48 9.199V4.48a.3.3 0 0 0-.492-.23L9.156 6.608a.3.3 0 0 0 0 .461l2.832 2.36a.3.3 0 0 0 .492-.231Z"></path>
+              </svg>
+              Undo Friend Request
+            </button>
           );
         } else if (data === 'Request received') {
           setFriendReqBtn(<button>Answer Request</button>);
-        } else if (data === 'Friends') {
+        } else if (data === 'Friends' || data === 'accepted') {
           setFriendReqBtn(
             <button>
               <svg
@@ -105,20 +123,14 @@ const UserPageHeader = ({ user }) => {
   }, [id, token]);
 
   const profilePopup = (userPop) => {
-    setFriendPopup(
-      <UserCard
-        leave={removeProfilePopup}
-        id={userPop._id}
-        name={userPop.name}
-        friendsID={userPop.friends}
-        user={userPop}
-        curUser={user}
-      />
-    );
+    setShowPopup(true);
+    setFriendPopup(userPop);
   };
 
-  const removeProfilePopup = () => {
-    setFriendPopup(undefined);
+  const removeProfilePopup = (e) => {
+    if (!popupRef.current || !popupRef.current.contains(e.relatedTarget)) {
+      setShowPopup(false);
+    }
   };
 
   const changeProfilePic = () => {
@@ -145,7 +157,7 @@ const UserPageHeader = ({ user }) => {
       {user === undefined ? (
         <></>
       ) : (
-        <div className="user-page">
+        <div className="user-page-header">
           <div className="user-container">
             <div className="profile-header">
               <div className="user-details">
@@ -195,8 +207,9 @@ const UserPageHeader = ({ user }) => {
                       <div className="friend-pics">
                         {user.friends.map((friend) => (
                           <div
-                            // onMouseLeave={removeProfilePopup}
+                            onMouseLeave={removeProfilePopup}
                             onMouseEnter={() => profilePopup(friend)}
+                            ref={popupRef}
                             className="user-pic"
                             key={friend._id}
                           >
@@ -204,11 +217,20 @@ const UserPageHeader = ({ user }) => {
                           </div>
                         ))}
                       </div>
-                      {friendPopup === undefined ? (
-                        <></>
-                      ) : (
-                        <div className="friend-pop" id="friend-pop">
-                          {friendPopup}
+                      {showPopup && (
+                        <div
+                          ref={popupRef}
+                          onMouseLeave={removeProfilePopup}
+                          className="friend-pop"
+                          id="friend-pop"
+                        >
+                          <UserCard
+                            id={friendPopup._id}
+                            name={friendPopup.name}
+                            friendsID={friendPopup.friends}
+                            user={friendPopup}
+                            curUser={user}
+                          />
                         </div>
                       )}{' '}
                     </>

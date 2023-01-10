@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { defaultUserPic } from '../../assets/SVG/svg';
 import { Buffer } from 'buffer';
+import { Link } from 'react-router-dom';
 
 const ProfilePicture = ({ user, id = '' }) => {
   const [image, setImage] = useState();
@@ -19,7 +20,11 @@ const ProfilePicture = ({ user, id = '' }) => {
     }
   }, [user.profilePicture, id]);
 
-  return <>{image}</>;
+  return (
+    <div className="profile-picture-div">
+      <Link to={`/user/page/${user._id}`}>{image}</Link>
+    </div>
+  );
 };
 
 export default ProfilePicture;

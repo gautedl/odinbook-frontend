@@ -35,6 +35,12 @@
             opacity: .6;
         }
 
+        .friend-pop {
+            position: absolute;
+
+            
+        }
+
         .friend {
             @include flexCenter(row);
             justify-content: flex-start;

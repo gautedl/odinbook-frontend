@@ -2,7 +2,175 @@
 @import './mixins';
 
 .user-page-container {
-    // margin: 0px 20em;
+    .user-page-header {
+        display: flex;
+        padding: 0px 20em;
+        // width: 100%;
+        background-color: $fourth-bg-color;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
+        min-height: 300px;
+        
+        .user-container {
+            width: 100%;
+            .profile-header {
+    
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-around;
+                // margin: 50px 20em;
+                margin-top: 50px;
+    
+                
+                .user-details {
+                display: flex;
+                align-items: center;
+                
+                .profile-pic-container {
+                    padding: 0;
+                    margin-right: 20px;
+                    
+                    .profile-pic {
+                        img, svg {
+                            width: 200px;
+                            border-radius: 50%;
+                        }
+                        
+                    }
+                    
+                    .change-profile-pic {
+                        display: flex;
+                        position: relative;
+                        justify-content: flex-end;
+                        top: -50px;
+                        right: 25px;
+                        z-index: 2;
+                        svg {
+                            height: 30px;
+                            border: solid 1px white;
+                            border-radius: 50%;
+                            background-color: white;
+                            cursor: pointer;
+                        }
+                    }
+                }
+    
+                .name-friends-container {
+                    
+    
+                    .have-friends {
+                        display: flex;
+                        gap: 5px;
+                        h3 {
+                            white-space: nowrap;
+                        }
+                    }
+    
+                    .friend-pics {
+                        display: flex;
+                        
+                        
+                        svg, img {
+                            margin-right: -8px;
+                            border-radius: 50%;
+                            height: 25px;
+                            background-color: white;
+                            cursor: pointer;
+                            
+                        }
+                    }
+    
+                    .friend-pop {
+                        position: absolute;
+
+                        
+                    }
+                    }
+                }
+            
+                .btn-container {
+                    margin-bottom: 50px;
+                    margin-left: 200px;
+                }
+            }
+    
+            .btn-container {
+                margin-bottom: 50px;
+    
+                
+                svg {
+                    height: 20px;
+                }
+                button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    gap: 5px;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+
+    .user-page-body-container {
+        display: flex;
+        padding: 30px 20em;
+        gap: 20px;
+        .side-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 50%;
+            .about-container {
+                background-color: white;
+                border-radius: 20px;
+                box-shadow: rgba(149, 157, 165, 0.4) 0px 2px 2px 0px;
+                padding: 10px;
+                margin-right: 25px;
+                
+            }
+
+            .friends-container {
+                background-color: white;
+                border-radius: 20px;
+                box-shadow: rgba(149, 157, 165, 0.4) 0px 2px 2px 0px;
+                padding: 10px;
+                margin-right: 25px;
+
+                .friends-container-header {
+                    margin-bottom: 20px;
+                    .titles {
+                        display: flex;
+                        justify-content: space-between;
+                        .see-all {
+                            color: $secondary-text-color;
+                            cursor: pointer;
+                        }
+
+                        .see-all:hover {
+                            text-decoration: underline;
+                            opacity: .8;
+                        }
+                        h3 {
+                            margin-bottom: 0px;
+                        }
+                    }
+
+                }
+                .friends {
+                    display: flex;
+                    gap: 20px;
+                    .friend {
+                        svg, img {
+                            width: 150px;
+                            border-radius: 8px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
 }
 
 .center-loading {
@@ -10,108 +178,3 @@
     @include flexCenter(row);
 }
 
-.user-page {
-    display: flex;
-    padding: 0px 20em;
-    // width: 100%;
-    background-color: $fourth-bg-color;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
-    
-    .user-container {
-        width: 100%;
-        .profile-header {
-
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            // margin: 50px 20em;
-            margin-top: 50px;
-
-            
-            .user-details {
-            display: flex;
-            align-items: center;
-            
-            .profile-pic-container {
-                padding: 0;
-                margin-right: 20px;
-                
-                .profile-pic {
-                    img, svg {
-                        width: 200px;
-                        border-radius: 50%;
-                    }
-                    
-                }
-                
-                .change-profile-pic {
-                    display: flex;
-                    position: relative;
-                    justify-content: flex-end;
-                    top: -50px;
-                    right: 25px;
-                    z-index: 2;
-                    svg {
-                        height: 30px;
-                        border: solid 1px white;
-                        border-radius: 50%;
-                        background-color: white;
-                        cursor: pointer;
-                    }
-                }
-            }
-
-            .name-friends-container {
-
-                .have-friends {
-                    display: flex;
-                    gap: 5px;
-                    h3 {
-                        white-space: nowrap;
-                    }
-                }
-
-                .friend-pics {
-                    display: flex;
-                    
-                    
-                    svg, img {
-                        margin-right: -8px;
-                        border-radius: 50%;
-                        height: 25px;
-                        background-color: white;
-                        cursor: pointer;
-                        
-                    }
-                }
-
-                .friend-pop {
-                    position: absolute;
-                }
-                }
-            }
-        
-            .btn-container {
-                margin-bottom: 50px;
-                margin-left: 200px;
-            }
-        }
-
-        .btn-container {
-            margin-bottom: 50px;
-
-            
-            svg {
-                height: 20px;
-            }
-            button {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-                gap: 5px;
-                white-space: nowrap;
-            }
-        }
-    }
-}
