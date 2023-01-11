@@ -6,6 +6,7 @@ const DisplayPosts = ({ route }) => {
   //   const [ownPosts, setOwnPosts] = useState([]);
   //   const [friendsPosts, setFriendsPosts] = useState([]);
   const [displayedPosts, setDisplayedPosts] = useState([]);
+  const [num, setNum] = useState(5);
 
   useEffect(() => {
     fetch(`/post/${route}`)
@@ -15,6 +16,16 @@ const DisplayPosts = ({ route }) => {
       });
   }, [route]);
 
+  const slicedArray = displayedPosts.slice(0, num);
+
+  const showMore = () => {
+    setNum(num + 5);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="posts-container">
       {displayedPosts.length === 0 ? (
@@ -22,7 +33,7 @@ const DisplayPosts = ({ route }) => {
       ) : displayedPosts === 'No posts' ? (
         <p>No Posts..</p>
       ) : (
-        displayedPosts.map((post) => (
+        slicedArray.map((post) => (
           <PostCard
             // route={'post'}
             likes={post.likes}
@@ -36,6 +47,19 @@ const DisplayPosts = ({ route }) => {
           />
         ))
       )}
+      <div className="post-footer">
+        {slicedArray.length === num ? (
+          <p className="post-link" onClick={showMore}>
+            Show More Posts
+          </p>
+        ) : (
+          <p className="post-link no-more">No More Posts</p>
+        )}
+
+        <p onClick={scrollToTop} className="post-link">
+          Go Back to the top
+        </p>
+      </div>
     </div>
   );
 };

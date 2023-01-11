@@ -166,14 +166,16 @@ const PostCard = (props) => {
 
   const showComments = () => {
     if (showCommentsPost === undefined) {
-      setShowCommentsPost(<CommentsCard comments={props.comments} />);
+      setShowCommentsPost(
+        <CommentsCard postId={props.id} comments={props.comments} />
+      );
     } else {
       setShowCommentsPost(undefined);
     }
   };
 
   return (
-    <div className="post-card">
+    <div className="post-card" id={`comment-${props.id}`}>
       {user === undefined ? (
         <Loading />
       ) : (

@@ -34,7 +34,7 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="create-post">
+    <div className="create-post" id="create-post">
       <div className="create-post-container">
         <form className="post-form">
           <ProfilePicture user={user} />

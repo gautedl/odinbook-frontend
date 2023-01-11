@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { defaultUserPic } from '../../assets/SVG/svg';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const ProfilePop = ({ open }) => {
@@ -7,13 +6,7 @@ const ProfilePop = ({ open }) => {
   const navigate = useNavigate();
 
   const logOut = () => {
-    fetch('/log_out', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch('/log_out')
       .then((res) => res.json())
       .then((data) => {
         if (data === 'logged out') {
@@ -31,12 +24,12 @@ const ProfilePop = ({ open }) => {
       ) : (
         <div className="profile-box" id="profile-pic">
           <ul>
-            <Link to={`/user/page/${user._id}`}>
-              <li>
-                <ProfilePicture user={user} />
+            <li>
+              <ProfilePicture user={user} />
+              <Link to={`/user/page/${user._id}`}>
                 <h3>{user.name}</h3>
-              </li>
-            </Link>
+              </Link>
+            </li>
             <Link to="/settings">
               <li>
                 <svg

@@ -51,12 +51,10 @@ const SearchBox = ({ srcValue }) => {
                 return null;
               } else {
                 return (
-                  <Link key={data._id} to={`/user/page/${data._id}`}>
-                    <li id="search">
-                      <ProfilePicture user={data} />
-                      {data.name}
-                    </li>
-                  </Link>
+                  <li id="search" key={data._id}>
+                    <ProfilePicture user={data} />
+                    <Link to={`/user/page/${data._id}`}>{data.name}</Link>
+                  </li>
                 );
               }
             })}

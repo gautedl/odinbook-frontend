@@ -88,8 +88,10 @@
                 }
             
                 .btn-container {
-                    margin-bottom: 50px;
+                    margin-bottom: 20px;
                     margin-left: 200px;
+
+                    @include buttonSecond($btn-color);
                 }
             }
     
@@ -120,7 +122,7 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            max-width: 50%;
+            max-width: 530px;
             .about-container {
                 background-color: white;
                 border-radius: 20px;
@@ -168,6 +170,30 @@
                         
                     }
                 }
+            }
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            .post-link {
+                cursor: pointer;
+                font-size: 12px;
+                text-decoration: underline;
+            }
+    
+            .post-link:hover {
+                color: $secondary-text-color;
+            }
+
+            .no-more {
+                cursor: alias;
+            }
+
+            .no-more:hover {
+                color: black;
+                
             }
         }
     }

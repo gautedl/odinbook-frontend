@@ -57,6 +57,10 @@
                 background-color: $btn-color;
             }
 
+            .test {
+                background-color: $third-btn-color;
+            }
+
             button:hover, button:focus {
                 filter: brightness(1.2);
             }

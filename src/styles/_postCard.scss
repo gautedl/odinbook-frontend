@@ -76,7 +76,8 @@
 
         svg {
             height: 30px;
-
+            border-radius: 0px;
+            
         }
 
         .post-btn {
@@ -114,6 +115,21 @@
 
         p {
             color: red;
+        }
+    }
+
+    .comment-footer {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        .comment-link {
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+
+        .comment-link:hover {
+            color: $secondary-text-color;
         }
     }
     

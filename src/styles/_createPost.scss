@@ -37,9 +37,9 @@
             width: 87%;
             justify-content: flex-end;
 
-            button {
-
-            }
+            
+                @include buttonFirst($btn-color)
+            
         }
 
         .error-msg {
