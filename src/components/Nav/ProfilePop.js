@@ -24,13 +24,13 @@ const ProfilePop = ({ open }) => {
       ) : (
         <div className="profile-box" id="profile-pic">
           <ul>
-            <li>
-              <ProfilePicture user={user} />
-              <Link to={`/user/page/${user._id}`}>
+            <Link to={`/user/page/${user._id}`}>
+              <li>
+                <ProfilePicture user={user} showLink={false} />
                 <h3>{user.name}</h3>
-              </Link>
-            </li>
-            <Link to="/settings">
+              </li>
+            </Link>
+            {/*<Link to="/settings">
               <li>
                 <svg
                   fill="none"
@@ -46,7 +46,7 @@ const ProfilePop = ({ open }) => {
                 </svg>
                 <h3>Settings</h3>
               </li>
-            </Link>
+      </Link>*/}
             <li onClick={logOut}>
               <svg
                 fill="none"

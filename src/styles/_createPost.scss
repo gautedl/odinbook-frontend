@@ -20,9 +20,10 @@
         .post-form {
             display: flex;
 
-            svg {
-                height: 30px;
+            svg, img {
+                height: 40px;
                 margin-right: 10px;
+                border-radius: 50%;
             }
 
             .input {

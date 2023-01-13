@@ -5,6 +5,7 @@ import ProfilePicture from '../HelperComponents/ProfilePicture';
 import NotifsBox from './NotifsBox';
 import ProfilePop from './ProfilePop';
 import SearchBox from './SearchBox';
+import SettingsPop from './SettingsPop';
 
 const NavBar = () => {
   const [searchField, setSearchField] = useState();
@@ -15,6 +16,7 @@ const NavBar = () => {
   );
   const [showAlerts, setShowAlerts] = useState();
   const [showProfilePop, setShowProfilePop] = useState();
+  const [showSettings, setShowSettings] = useState();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const searchUser = (e) => {
@@ -37,6 +39,14 @@ const NavBar = () => {
     }
   };
 
+  const showSettingsHandler = () => {
+    if (showSettings === undefined) {
+      setShowSettings(<SettingsPop />);
+    } else {
+      setShowSettings(undefined);
+    }
+  };
+
   const showDetailPop = () => {
     if (showProfilePop === undefined) {
       setShowProfilePop(<ProfilePop open={true} user={user} />);
@@ -53,6 +63,9 @@ const NavBar = () => {
     if (e.target.id !== 'profile-pic') {
       setShowProfilePop(undefined);
       <ProfilePop open={false} />;
+    }
+    if (e.target.id !== 'settings') {
+      setShowSettings(undefined);
     }
   };
 
@@ -110,8 +123,10 @@ const NavBar = () => {
         )}
       </div>
       <div className="route-container">
-        <Link to="/settings">
+        <div className="settings-container">
           <svg
+            id="settings"
+            onClick={showSettingsHandler}
             fill="none"
             stroke="currentColor"
             strokeLinecap="round"
@@ -123,13 +138,18 @@ const NavBar = () => {
             <path d="M12 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6z"></path>
             <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
           </svg>
-        </Link>
+          {showSettings === undefined ? (
+            <></>
+          ) : (
+            <div className="settings-pop">{showSettings}</div>
+          )}
+        </div>
         <div className="profile-container" id="profile-pic">
           <div onClick={showDetailPop} id="profile-pic">
             {user === undefined ? (
               <></>
             ) : user.profilePicture ? (
-              <ProfilePicture id="profile-pic" user={user} />
+              <ProfilePicture id="profile-pic" user={user} showLink={false} />
             ) : (
               defaultUserPicNav
             )}

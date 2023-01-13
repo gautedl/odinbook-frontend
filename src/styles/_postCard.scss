@@ -74,9 +74,9 @@
         align-items: center;
         margin-top: 10px;
 
-        svg {
+        svg, img {
             height: 30px;
-            border-radius: 0px;
+            border-radius: 50%;
             
         }
 
@@ -84,6 +84,7 @@
             position: relative;
             right: 40px;
             cursor: pointer;
+            border-radius: 0px;
         }
 
         textarea {
@@ -122,6 +123,7 @@
         display: flex;
         justify-content: space-around;
         width: 100%;
+
         .comment-link {
             cursor: pointer;
             font-size: 12px;
@@ -130,6 +132,15 @@
 
         .comment-link:hover {
             color: $secondary-text-color;
+        }
+
+        .no-more {
+            cursor: alias;
+        }
+
+        .no-more:hover {
+            color: black;
+            
         }
     }
     

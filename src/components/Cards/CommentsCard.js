@@ -4,7 +4,8 @@ import CommentCard from './CommentCard';
 
 const CommentsCard = ({ comments, numComments = 5, postId }) => {
   const [num, setNum] = useState(numComments);
-  const slicedArray = comments.slice(0, num);
+  const reversedList = [...comments].reverse();
+  const slicedArray = reversedList.slice(0, num);
 
   const showMore = () => {
     setNum(num + 5);
@@ -24,9 +25,14 @@ const CommentsCard = ({ comments, numComments = 5, postId }) => {
         />
       ))}
       <div className="comment-footer">
-        <p className="comment-link" onClick={showMore}>
-          Show more comments
-        </p>
+        {slicedArray.length === num ? (
+          <p className="comment-link" onClick={showMore}>
+            Show More Comments
+          </p>
+        ) : (
+          <p className="comment-link no-more">No More Posts</p>
+        )}
+
         <Link to={`comment-${postId}`} spy={true} smooth={true}>
           <p className="comment-link">Post Comment</p>
         </Link>

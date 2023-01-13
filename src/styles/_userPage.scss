@@ -197,6 +197,100 @@
             }
         }
     }
+
+    .edit-user-container {
+        z-index: 10;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $fourth-bg-color;
+        width: 500px;
+        padding: 30px;
+        border-radius: 16px;
+
+        .edit-header {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid black;
+
+            
+
+            svg {
+                width: 30px;
+                cursor: pointer;
+                border-radius: 50%;
+            }
+        }
+
+        .edit-container {
+
+            .images {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                position: relative;
+                .image-overlay {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 100px;
+                    display: none;
+                }
+                svg, img {
+                    cursor: pointer;
+                    width: 200px;
+                }
+            }
+
+            .images:hover {
+                .image-overlay {
+                    opacity: .5;
+                    display: inline !important;
+                }
+
+            }
+
+            .about-edit-container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+
+                textarea {
+                    width: 90%;
+                    height: 100px;
+                    resize: none;
+                }
+            }
+
+        }
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            @include buttonSecond($btn-color);
+            button {
+                width: 70%;
+                font-size: 18px;
+            }
+
+        }
+
+        
+    }
+    .page-mask {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 2;
+      }
 }
 
 .center-loading {

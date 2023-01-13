@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { defaultUserPic } from '../../assets/SVG/svg';
 import CommentsCard from './CommentsCard';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 import Loading from '../HelperComponents/Loading';
@@ -10,9 +9,11 @@ const PostCard = (props) => {
   const [user, setUser] = useState();
   const [comment, setComment] = useState();
   const [showCommentsPost, setShowCommentsPost] = useState();
+  const [comments, setComments] = useState(props.comments);
 
   const token = `Bearer ${localStorage.getItem('token')}`;
   const userID = JSON.parse(localStorage.getItem('user'))._id;
+  const curUser = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     fetch(`/home/user/${props.user._id}`)
@@ -143,6 +144,8 @@ const PostCard = (props) => {
     )
   );
 
+  const input = document.getElementById('comment');
+
   const postComment = () => {
     const newComment = {
       text: comment,
@@ -158,8 +161,15 @@ const PostCard = (props) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data !== 'posted') {
+        if (data.msg !== 'posted') {
           setErr(data);
+        } else {
+          const updatedComments = [...comments, data.comment];
+          setComments(updatedComments);
+          input.value = '';
+          setShowCommentsPost(
+            <CommentsCard postId={props.id} comments={updatedComments} />
+          );
         }
       });
   };
@@ -167,7 +177,7 @@ const PostCard = (props) => {
   const showComments = () => {
     if (showCommentsPost === undefined) {
       setShowCommentsPost(
-        <CommentsCard postId={props.id} comments={props.comments} />
+        <CommentsCard postId={props.id} comments={comments} />
       );
     } else {
       setShowCommentsPost(undefined);
@@ -186,11 +196,11 @@ const PostCard = (props) => {
           <div className="footer-container">
             <p className="date">{date_formated}</p>
             <div className="like-comments">
-              {props.comments.length === 0 ? (
+              {comments.length === 0 ? (
                 <></>
               ) : (
                 <p className="click-comments" onClick={showComments}>
-                  {props.comments.length} Comments
+                  {comments.length} Comments
                 </p>
               )}
 
@@ -201,8 +211,9 @@ const PostCard = (props) => {
             </div>
           </div>
           <div className="add-comment-container">
-            {defaultUserPic}
+            <ProfilePicture user={curUser} />
             <textarea
+              id="comment"
               placeholder="Add Comment"
               type="text"
               onChange={(e) => {
@@ -228,7 +239,7 @@ const PostCard = (props) => {
           {showCommentsPost}
           {err.map((err, i) => (
             <div key={i} className="err-cont">
-              <p className="error-msg">{err.msg}</p>
+              <p className="error-msg">{err.message}</p>
             </div>
           ))}
         </>

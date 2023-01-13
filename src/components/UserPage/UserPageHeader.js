@@ -3,12 +3,14 @@ import { useParams } from 'react-router-dom';
 import UserCard from '../Cards/UserCard';
 import axios from 'axios';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
+import EditUser from './EditUser';
 
 const UserPageHeader = ({ user }) => {
   const { id } = useParams();
   const [FriendReqBtn, setFriendReqBtn] = useState();
   const [friendPopup, setFriendPopup] = useState();
   const [showPopup, setShowPopup] = useState(false);
+  const [showEditUser, setShowEditUser] = useState(false);
   const popupRef = useRef(null);
 
   const userID = JSON.parse(localStorage.getItem('user'))._id;
@@ -59,7 +61,6 @@ const UserPageHeader = ({ user }) => {
     fetch(`/friend_request/${id}/find`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data === 'Not sent') {
           setFriendReqBtn(
             <button onClick={addFriend}>
@@ -175,6 +176,7 @@ const UserPageHeader = ({ user }) => {
                         name="profilePicture"
                       />
                       <svg
+                        className="change-profile"
                         onClick={changeProfilePic}
                         fill="none"
                         stroke="currentColor"
@@ -239,7 +241,11 @@ const UserPageHeader = ({ user }) => {
               </div>
               <div className="btn-container">
                 {id === userID ? (
-                  <button>
+                  <button
+                    onClick={() => {
+                      setShowEditUser(!showEditUser);
+                    }}
+                  >
                     {
                       <svg
                         fill="currentColor"
@@ -260,6 +266,13 @@ const UserPageHeader = ({ user }) => {
             </div>
           </div>
         </div>
+      )}
+      {showEditUser && (
+        <EditUser
+          user={user}
+          setShowEditUser={setShowEditUser}
+          showEditUser={showEditUser}
+        />
       )}
     </>
   );

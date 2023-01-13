@@ -4,7 +4,6 @@ import ProfilePicture from '../HelperComponents/ProfilePicture';
 
 const NotifsBox = ({ notifsValue }) => {
   const [friendRequestNotifs, setFriendRequestNotifs] = useState();
-  // const [showNotifs, setShowNotifs] = useState(notifsValue);
 
   const token = `Bearer ${localStorage.getItem('token')}`;
 
@@ -12,8 +11,8 @@ const NotifsBox = ({ notifsValue }) => {
     fetch('/friend_request/show_recipient')
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setFriendRequestNotifs(data);
+        // setFriendRequestNotifs(data);
+        setFriendRequestNotifs(data.filter((req) => req.status === 'pending'));
       });
   }, []);
 
@@ -59,25 +58,31 @@ const NotifsBox = ({ notifsValue }) => {
       {friendRequestNotifs === undefined ? (
         <></>
       ) : (
-        /*showNotifs === false ? (
-        <></>
-      ) :*/ <div className="notifs-box" id="notif">
+        <div className="notifs-box" id="notif">
           <ul>
-            {friendRequestNotifs.map((data) => {
-              if (data.status !== 'pending') {
-                return null;
-              } else
-                return (
-                  <li key={data._id} id="notif">
-                    <ProfilePicture user={data.sender} />
-                    {data.sender.name}{' '}
-                    <div className="btn-container">
-                      {<AcceptButton click={() => acceptRequest(data._id)} />}
-                      {<DeclineButton click={() => declineRequest(data._id)} />}
-                    </div>
-                  </li>
-                );
-            })}
+            {friendRequestNotifs.length === 0 ? (
+              <li>No Notifications</li>
+            ) : (
+              friendRequestNotifs.map((data) => {
+                if (data.status !== 'pending') {
+                  return null;
+                } else
+                  return (
+                    <li key={data._id} id="notif">
+                      <ProfilePicture user={data.sender} />
+                      {data.sender.name}{' '}
+                      <div className="btn-container">
+                        {<AcceptButton click={() => acceptRequest(data._id)} />}
+                        {
+                          <DeclineButton
+                            click={() => declineRequest(data._id)}
+                          />
+                        }
+                      </div>
+                    </li>
+                  );
+              })
+            )}
           </ul>
         </div>
       )}

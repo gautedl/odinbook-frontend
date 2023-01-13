@@ -1,5 +1,6 @@
 export const defaultUserPic = (
   <svg
+    className="user-6123541"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
@@ -15,6 +16,7 @@ export const defaultUserPic = (
 
 export const defaultUserPicNav = (
   <svg
+    className="user-6123541"
     id="profile-pic"
     fill="none"
     stroke="currentColor"

@@ -26,6 +26,15 @@
         .post-link:hover {
             color: $secondary-text-color;
         }
+
+        .no-more {
+            cursor: alias;
+        }
+
+        .no-more:hover {
+            color: black;
+            
+        }
     }
 
 

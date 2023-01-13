@@ -52,6 +52,18 @@
             border-radius: 50%;
         }
 
+        .settings-container {
+            display: flex;
+            align-items: center;
+            margin-top: 0px;
+
+            .settings-pop {
+                position: absolute;
+                top: 60px;
+                right: 150px;
+            }
+        }
+
         .profile-container {
             display: flex;
             align-items: center;

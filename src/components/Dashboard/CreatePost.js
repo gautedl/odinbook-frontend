@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 
-const CreatePost = () => {
+const CreatePost = ({ setDisplayedPosts, displayedPosts }) => {
   const [post, setPost] = useState();
   const [errorMsg, setErrorMsg] = useState([]);
 
@@ -25,9 +25,12 @@ const CreatePost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data !== 'posted') {
+        console.log(data);
+        if (data.message !== 'posted') {
           setErrorMsg(data);
         }
+        const updatedPosts = [...displayedPosts, data.post];
+        setDisplayedPosts(updatedPosts);
         setPost('');
         input.value = '';
       });
@@ -55,7 +58,7 @@ const CreatePost = () => {
         </div>
         {errorMsg.map((err, i) => (
           <p className="error-msg" key={i}>
-            {err.msg}
+            {err.message}
           </p>
         ))}
       </div>
