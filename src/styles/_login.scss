@@ -4,6 +4,11 @@
 .login-container {
     @include flexCenter(column);
     height: 90vh;
+    @include themed() {
+        background-color: t("secondary-bg-color");
+        color: t("main-text-color"); 
+    }
+    height: 100vh;
 
     .greeting {
         h1 {
@@ -13,11 +18,15 @@
     }
 
     .login-field {
+        @include themed() {
+            background-color: t("fourth-bg-color");
+            color: t("main-text-color");
+        }
         @include flexCenter(column);
         margin-bottom: 100px;
         padding: 30px;
         border-radius: 12px;
-        background-color: $fourth-bg-color;
+        // background-color: $fourth-bg-color;
 
         form {
             display: flex;
@@ -32,11 +41,26 @@
                 
 
                 input {
+                    @include themed() {
+                        background-color: t("fifth-bg-color") ;
+                        color: t("main-text-color") ;
+                        border: 1px t("border-color") solid;
+                    };
+
                     width: 370px;
                     height: 30px;
                     border-radius: 8px;
-                    border: 1px lightgrey solid;
                 }
+
+                .input::-webkit-input-placeholder, .input:-moz-placeholder, .input::-moz-placeholder, .input:-ms-input-placeholder, .input:-webkit-autofill  {
+                    @include themed() {
+                        background-color: t("fifth-bg-color") ;
+                        color: t("main-text-color") ;
+                        border: 1px t("border-color") solid;
+                    };
+                }
+
+               
 
                 input:focus {
                     outline: green 2px solid;

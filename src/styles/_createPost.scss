@@ -7,13 +7,16 @@
     margin-bottom: 50px;
     
     .create-post-container {
+        @include themed() {
+            background-color: t("fourth-bg-color");
+            color: t("main-text-color");
+            border: t("border-color") 1px solid; 
+        }
         @include flexCenter(column);
         width: 600px;
         padding: 20px;
         border-radius: 20px;
         box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
-        background-color: $fourth-bg-color;
-        border: $border-color 1px solid;
         gap: 10px;
     
         
@@ -21,12 +24,20 @@
             display: flex;
 
             svg, img {
+                @include themed() {
+                    background-color: t("secondary-bg-color");
+                };
                 height: 40px;
                 margin-right: 10px;
                 border-radius: 50%;
             }
 
-            .input {
+            .input { 
+                @include themed() {
+                    background-color: t("fifth-bg-color") ;
+                    color: t("main-text-color") ;
+                    border: 1px t("border-color") solid;
+                };
                 width: 500px;
                 resize: none;
                 min-height: 50px;

@@ -58,3 +58,59 @@
       box-shadow: none;
     }
 }
+
+$themes: (
+    light: (
+        bg-color: $bg-color,
+        secondary-bg-color: $secondary-bg-color,
+        third-bg-color: $third-bg-color,
+        fourth-bg-color: $fourth-bg-color,
+        fifth-bg-color: $fifth-bg-color,
+
+        btn-color: $btn-color,
+        secondary-btn-color: $secondary-btn-color,
+        third-btn-color: $third-btn-color,
+
+        main-text-color: $main-text-color,
+        secondary-text-color: $secondary-text-color,
+        third-text-color: $third-text-color,
+        fourth-text-color: $fourth-text-color,
+
+        border-color: $border-color,
+    ),
+    dark: (
+        bg-color: $bg-color-dark,
+        secondary-bg-color: $secondary-bg-color-dark,
+        third-bg-color: $third-bg-color-dark,
+        fourth-bg-color: $fourth-bg-color-dark,
+        fifth-bg-color: $fifth-bg-color-dark,
+
+        btn-color: $btn-color-dark,
+        secondary-btn-color: $secondary-btn-color-dark,
+        third-btn-color: $third-btn-color-dark,
+
+        main-text-color: $main-text-color-dark,
+        secondary-text-color: $secondary-text-color-dark,
+        third-text-color: $third-text-color-dark,
+
+        border-color: $border-color-dark,
+    )
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key)
+}

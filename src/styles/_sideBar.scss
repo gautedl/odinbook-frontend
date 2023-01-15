@@ -2,10 +2,14 @@
 @import './mixins';
 
 .side-bar-container {
+    @include themed() {
+        background-color: t("fourth-bg-color");
+        color: t("main-text-color");
+        border: t("border-color") 1px solid;
+    }
     height: 80%;
     width: 300px;
-    background-color: $fourth-bg-color;
-    border: $border-color 1px solid;
+    // background-color: $fourth-bg-color;
     padding: 20px;
     border-radius: 20px;
     box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
@@ -15,6 +19,9 @@
         justify-content: flex-start;
         gap: 15px;
         svg, img {
+            @include themed() {
+                background-color: t("secondary-bg-color");
+            };
             height: 45px;
             border-radius: 50%;
         }
@@ -46,6 +53,9 @@
             justify-content: flex-start;
             gap: 10px;
             img, svg {
+                @include themed() {
+                    background-color: t("secondary-bg-color");
+                };
                 height: 40px;
                 border-radius: 50%;
             }

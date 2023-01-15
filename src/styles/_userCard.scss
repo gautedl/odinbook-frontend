@@ -2,6 +2,10 @@
 @import './mixins';
 
 .pop-card-container {
+    @include themed() {
+        background-color: t("fourth-bg-color");
+        color: t("main-text-color");
+    }
     @include flexCenter(column);
     background-color: $fourth-bg-color;
     padding: 15px 25px;
@@ -15,6 +19,9 @@
         gap: 10px;
 
         svg, img {
+            @include themed() {
+                background-color: t("secondary-bg-color");
+            };
             height: 70px;
             border-radius: 50%;
         }
@@ -23,5 +30,7 @@
     .pop-card-btn-container {
         display: flex;
         gap: 15px;
+
+        @include buttonSecond($btn-color)
     }
 }

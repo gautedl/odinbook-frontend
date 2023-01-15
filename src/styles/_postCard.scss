@@ -2,6 +2,10 @@
 @import './mixins';
 
 .post-card {
+    @include themed() {
+        background-color: t("fourth-bg-color");
+        color: t("main-text-color");
+    }
     @include flexCenter(column);
     align-items: flex-start;
     width: 600px;
@@ -18,6 +22,9 @@
     }
 
     svg, img {
+        @include themed() {
+            background-color: t("fourth-bg-color");
+        };
         height: 50px;
         border-radius: 50%;
     }
@@ -77,7 +84,11 @@
         svg, img {
             height: 30px;
             border-radius: 50%;
-            
+            @include themed() {
+                background-color: t("fifth-bg-color");
+            };
+            // background-color: rgb(238, 238, 238);
+            color: black;
         }
 
         .post-btn {
@@ -88,18 +99,25 @@
         }
 
         textarea {
+            @include themed() {
+                background-color: t("fifth-bg-color");
+                color: t("main-text-color")
+            };
             margin-left: 10px;
             padding-right: 40px !important;
             width: 75%;
             padding: 10px;
             border: none;
-            background-color: $fifth-bg-color;
+            // background-color: $fifth-bg-color;
             border-radius: 16px;
             resize: none;
         }
 
         textarea:focus {
-            outline-color: $secondary-text-color;
+            @include themed() {
+                outline-color: t("secondary-text-color");
+            };
+            // outline-color: $secondary-text-color;
         }
 
         .search-field {
@@ -139,7 +157,10 @@
         }
 
         .no-more:hover {
-            color: black;
+            @include themed() {
+                color: t("main-text-color");
+            };
+
             
         }
     }

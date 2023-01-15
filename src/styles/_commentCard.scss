@@ -22,9 +22,12 @@
             margin-left: 10px;
 
             .box {
+                @include themed() {
+                    background-color: t("fifth-bg-color");
+                    color: t("main-text-color");
+                }
                 display: flex;
                 flex-direction: column;
-                background-color: $fifth-bg-color;
                 padding: 7px 10px;
                 gap: 7px;
                 border-radius: 16px;

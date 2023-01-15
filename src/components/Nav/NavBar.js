@@ -180,7 +180,9 @@ const NavBar = () => {
           {showAlerts === undefined ? (
             <></>
           ) : (
-            <div className="notifs-field">{showAlerts}</div>
+            <div className="notifs-field" id="settings">
+              {showAlerts}
+            </div>
           )}
         </div>
       </div>

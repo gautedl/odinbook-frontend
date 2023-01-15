@@ -2,9 +2,13 @@
 @import './mixins';
 
 .home {
-
+    height: 100vh;
+    @include themed() {
+        background-color: t("secondary-bg-color");
+        color: t("main-text-color"); 
+    }
     .dashboard {
-        margin: 40px 60px;
+        padding: 40px 60px;
         display: grid;
         grid-template-columns: 1fr 8fr;
         justify-content: center;
@@ -32,7 +36,10 @@
         }
 
         .no-more:hover {
-            color: black;
+            @include themed() {
+                color: t("main-text-color"); 
+            }
+  
             
         }
     }

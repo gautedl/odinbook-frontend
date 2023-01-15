@@ -2,11 +2,22 @@
 @import './mixins';
 
 .user-page-container {
+    @include themed() {
+        background-color: t("secondary-bg-color");
+        color: t("main-text-color"); 
+    }
+
+
     .user-page-header {
+        @include themed() {
+            background-color: t("fourth-bg-color");
+            color: t("main-text-color");
+        }
+
         display: flex;
         padding: 0px 20em;
         // width: 100%;
-        background-color: $fourth-bg-color;
+        // background-color: $fourth-bg-color;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
         min-height: 300px;
         
@@ -45,11 +56,19 @@
                         right: 25px;
                         z-index: 2;
                         svg {
+                            @include themed() {
+                                background-color: t("secondary-bg-color");
+                                color: t("white");
+                                border: solid 1px t("border-color");
+                            
+                            }
                             height: 30px;
-                            border: solid 1px white;
+                            padding: 5px;
+                            // border: solid 1px white;
                             border-radius: 50%;
-                            background-color: white;
+                            // background-color: rgb(192, 192, 192);
                             cursor: pointer;
+                            overflow:visible
                         }
                     }
                 }
@@ -124,18 +143,24 @@
             gap: 25px;
             max-width: 530px;
             .about-container {
-                background-color: white;
+                @include themed() {
+                    background-color: t("fourth-bg-color");
+                }
+                // background-color: white;
                 border-radius: 20px;
-                box-shadow: rgba(149, 157, 165, 0.4) 0px 2px 2px 0px;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
                 padding: 10px;
                 margin-right: 25px;
                 
             }
 
             .friends-container {
-                background-color: white;
+                @include themed() {
+                    background-color: t("fourth-bg-color");
+                }
+                // background-color: white;
                 border-radius: 20px;
-                box-shadow: rgba(149, 157, 165, 0.4) 0px 2px 2px 0px;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
                 padding: 10px;
                 margin-right: 25px;
 
@@ -145,6 +170,9 @@
                         display: flex;
                         justify-content: space-between;
                         .see-all {
+                            // @include themed() {
+                            //     background-color: t("secondary-text-color");
+                            // }
                             color: $secondary-text-color;
                             cursor: pointer;
                         }
@@ -164,6 +192,9 @@
                     gap: 20px;
                     .friend {
                         svg, img {
+                            @include themed() {
+                                background-color: t("secondary-bg-color");
+                            };
                             width: 150px;
                             border-radius: 8px;
                         }
@@ -199,12 +230,15 @@
     }
 
     .edit-user-container {
+        @include themed() {
+            background-color: t("fourth-bg-color");
+        }
         z-index: 10;
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: $fourth-bg-color;
+        // background-color: $fourth-bg-color;
         width: 500px;
         padding: 30px;
         border-radius: 16px;

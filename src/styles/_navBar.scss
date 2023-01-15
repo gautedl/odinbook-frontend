@@ -2,8 +2,12 @@
 @import './mixins';
 
 .nav-container {
+    @include themed() {
+        background-color: t("fourth-bg-color");
+        color: t("main-text-color");
+    }
     z-index: 1;
-    background-color: $fourth-bg-color;
+    // background-color: $fourth-bg-color;
     @include flexCenter(row);
     justify-content: space-between;
     padding: 0 5vw;
@@ -21,13 +25,18 @@
             height: 30px;
             position: relative;
             left: 40px;
+            cursor: pointer;
         }
 
         input {
+            @include themed() {
+                background-color: t("fifth-bg-color");
+                color: t("main-text-color")
+            };
             padding: 10px;
             padding-left: 40px;
             border: none;
-            background-color: $fifth-bg-color;
+            // background-color: $fifth-bg-color;
             border-radius: 16px;
         }
 
@@ -52,15 +61,33 @@
             border-radius: 50%;
         }
 
+        svg:hover, img:hover {
+            filter: brightness(1.2);
+        }
+
         .settings-container {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-top: 0px;
 
             .settings-pop {
                 position: absolute;
                 top: 60px;
                 right: 150px;
+
+                .profile-box {
+                    ul {
+                        li {
+                            display: flex;
+                    justify-content: flex-end;
+                    @include buttonSecond($third-btn-color)
+                        }
+                    }
+                    
+                }
+
+               
             }
         }
 

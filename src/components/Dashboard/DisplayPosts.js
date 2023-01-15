@@ -18,9 +18,11 @@ const DisplayPosts = ({ route }) => {
       .then((data) => {
         setDisplayedPosts(data);
       });
+  }, [route]);
 
+  useEffect(() => {
     setSlicedArray(displayedPosts.slice(0, num));
-  }, [route, displayedPosts, num, setSlicedArray]);
+  }, [displayedPosts, num]);
 
   const showMore = () => {
     setNum(num + 5);

@@ -2,9 +2,13 @@
 @import './mixins';
 
 .notifs-box {
+    @include themed() {
+        background-color: t("fourth-bg-color");
+        color: t("main-text-color");
+    }
     width: 200px;
     border: none;
-    background-color: $fourth-bg-color;
+    // background-color: $fourth-bg-color;
     box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
 
     ul {
@@ -39,7 +43,10 @@
                     padding: 2px;
                 }
 
-                svg {
+                svg, img {
+                    @include themed() {
+                        background-color: t("secondary-bg-color");
+                    };
                     height: 30px;
                 }
 
@@ -51,7 +58,7 @@
         }
 
         li:hover {
-            background-color: $secondary-bg-color;
+            filter: brightness(1.2);
         }
     }
 }

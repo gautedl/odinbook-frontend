@@ -19,6 +19,9 @@
     width: 7px;
     height: 7px;
     border-radius: 50%;
+    @include themed() {
+      background: t("main-text-color");
+  }
     background: $main-text-color;
     margin: -4px 0 0 -4px;
   }

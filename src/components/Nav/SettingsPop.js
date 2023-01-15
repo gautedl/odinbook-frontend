@@ -1,9 +1,11 @@
+import ThemeSetter from '../Theme/ThemeSetter';
+
 const SettingsPop = () => {
   return (
-    <div className="profile-box" id="profile-pic">
-      <ul>
-        <li>
-          <button>Change Theme</button>
+    <div className="profile-box" id="settings">
+      <ul id="settings">
+        <li id="settings">
+          <ThemeSetter />
         </li>
       </ul>
     </div>

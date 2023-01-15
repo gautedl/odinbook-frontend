@@ -104,6 +104,7 @@ const Login = () => {
               name="email"
               id="email"
               placeholder="Email:"
+              className="input"
               onChange={(e) => {
                 setSelectedEmail(e.target.value);
               }}
@@ -116,6 +117,7 @@ const Login = () => {
               type="password"
               name="password"
               id="password"
+              className="input"
               placeholder="Password:"
               onChange={(e) => {
                 setSelectedPassword(e.target.value);
