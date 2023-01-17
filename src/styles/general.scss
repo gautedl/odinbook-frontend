@@ -27,6 +27,14 @@ body {
   
 }
 
+.body {
+  height: 100vh;
+  @include themed() {
+    background-color: t("secondary-bg-color");
+    color: t("main-text-color"); 
+}
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

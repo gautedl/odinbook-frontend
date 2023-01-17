@@ -18,16 +18,19 @@ const UserPage = () => {
   return (
     <>
       <NavBar />
-      {user === undefined ? (
-        <div className="center-loading">
-          <Loading />
-        </div>
-      ) : (
-        <div className="user-page-container">
-          <UserPageHeader user={user} />
-          <UserPageBody user={user} />
-        </div>
-      )}
+      <div className="user-page-container">
+        {user === undefined ? (
+          <div className="center-loading">
+            <Loading />
+          </div>
+        ) : (
+          <>
+            <UserPageHeader user={user} />
+            <UserPageBody user={user} />
+            <div></div>
+          </>
+        )}
+      </div>
     </>
   );
 };

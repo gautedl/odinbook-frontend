@@ -9,15 +9,17 @@ import StartupRouter from './helpers/StartupRouter';
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<StartupRouter />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/sign_up" element={<SignUp />} />
-          <Route path="/user/page/:id" element={<UserPage />} />
-        </Routes>
-      </Router>
+      <div className="body">
+        <Router>
+          <Routes>
+            <Route path="/" element={<StartupRouter />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/sign_up" element={<SignUp />} />
+            <Route path="/user/page/:id" element={<UserPage />} />
+          </Routes>
+        </Router>
+      </div>
     </ThemeProvider>
   );
 }

@@ -31,14 +31,17 @@
                 display: flex;
                 gap: 10px;
 
+
                 .accept {
-                    background-color: rgb(61, 194, 61);
+                    color: black;
+                    background-color: rgb(61, 194, 61) !important;
                     border-radius: 50%;
                     padding: 2px;
                 }
                 
                 .decline {
-                    background-color: rgb(245, 61, 61);
+                    color: black;
+                    background-color: rgb(245, 61, 61) !important;
                     border-radius: 50%;
                     padding: 2px;
                 }
@@ -60,5 +63,24 @@
         li:hover {
             filter: brightness(1.2);
         }
+    }
+
+    @media only screen and (min-width : 1921px) {
+       width: 300px;
+
+       ul {
+        li {
+            font-size: 1.5em;
+            img, svg {
+                height: 50px;
+            }
+
+            .btn-container {
+                svg, img {
+                    height: 40px;
+                }
+            }
+        }
+       }
     }
 }

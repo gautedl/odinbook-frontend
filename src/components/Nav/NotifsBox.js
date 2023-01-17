@@ -17,7 +17,6 @@ const NotifsBox = ({ notifsValue }) => {
   }, []);
 
   const acceptRequest = (senderId) => {
-    console.log(senderId);
     fetch(`/friend_req/accept/${senderId}`, {
       method: 'POST',
       headers: {

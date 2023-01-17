@@ -7,15 +7,15 @@
         color: t("main-text-color"); 
     }
 
-
     .user-page-header {
         @include themed() {
             background-color: t("fourth-bg-color");
             color: t("main-text-color");
         }
 
-        display: flex;
-        padding: 0px 20em;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        padding: 0px 10em;
         // width: 100%;
         // background-color: $fourth-bg-color;
         box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
@@ -44,6 +44,7 @@
                         img, svg {
                             width: 200px;
                             border-radius: 50%;
+                            cursor: alias;
                         }
                         
                     }
@@ -74,13 +75,16 @@
                 }
     
                 .name-friends-container {
-                    
+                    h1 {
+                        margin-bottom: 0px;
+                    }
     
                     .have-friends {
                         display: flex;
                         gap: 5px;
                         h3 {
                             white-space: nowrap;
+                            margin-top: 0px;
                         }
                     }
     
@@ -134,14 +138,16 @@
     }
 
     .user-page-body-container {
-        display: flex;
-        padding: 30px 20em;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        padding: 40px;
         gap: 20px;
         .side-bar {
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
             gap: 25px;
-            max-width: 530px;
+            width: 100%;
             .about-container {
                 @include themed() {
                     background-color: t("fourth-bg-color");
@@ -151,10 +157,11 @@
                 box-shadow: rgba(100, 100, 111, 0.2) 0px 2px 2px 0px;
                 padding: 10px;
                 margin-right: 25px;
-                
+                width: 400px;
             }
 
             .friends-container {
+                width: 400px;
                 @include themed() {
                     background-color: t("fourth-bg-color");
                 }
@@ -189,14 +196,19 @@
                 }
                 .friends {
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 20px;
                     .friend {
                         svg, img {
                             @include themed() {
                                 background-color: t("secondary-bg-color");
                             };
-                            width: 150px;
+                            width: 120px;
                             border-radius: 8px;
+                        }
+
+                        h4 {
+                            margin-top: 5px;
                         }
                         
                     }
@@ -235,7 +247,7 @@
         }
         z-index: 10;
         position: fixed;
-        top: 50%;
+        top: 40%;
         left: 50%;
         transform: translate(-50%, -50%);
         // background-color: $fourth-bg-color;
@@ -260,11 +272,12 @@
         }
 
         .edit-container {
-
-            .images {
+            .images-container {
                 display: flex;
                 justify-content: center;
-                width: 100%;
+            
+            .images {
+                
                 position: relative;
                 .image-overlay {
                     position: absolute;
@@ -278,16 +291,18 @@
                     cursor: pointer;
                     width: 200px;
                 }
+
             }
 
             .images:hover {
+                opacity: .8;
                 .image-overlay {
-                    opacity: .5;
+                    opacity: .6;
                     display: inline !important;
                 }
-
             }
 
+            }
             .about-edit-container {
                 display: flex;
                 justify-content: center;
@@ -297,9 +312,12 @@
                     width: 90%;
                     height: 100px;
                     resize: none;
+                    @include themed() {
+                        background-color: t("fifth-bg-color");
+                        color: t("main-text-color")
+                    };
                 }
             }
-
         }
         .btn-container {
             margin-top: 20px;
@@ -309,7 +327,7 @@
             @include buttonSecond($btn-color);
             button {
                 width: 70%;
-                font-size: 18px;
+                font-size: 1.1em;
             }
 
         }
@@ -325,10 +343,542 @@
         left: 0;
         z-index: 2;
       }
+
+      @media screen and (max-width: 480px) {
+        .user-page-header {
+            display: flex;
+            padding: 0px;
+            min-height: 150px;
+            .user-container {
+                .profile-header {
+
+                    .profile-pic-container {
+
+                        .profile-pic {
+                            img, svg {
+                                width: 80px !important;
+                            }
+                        }
+
+                        .change-profile-pic {
+                            right: -5px !important;
+                            top: -30px !important;
+
+                            svg {
+                                height: 20px !important;
+                            }
+                        }
+                        
+                    }
+
+                    .name-friends-container {
+                        h1 {
+                            font-size: .8em;
+                        }
+
+                        .have-friends {
+                            h3 {
+                                font-size: .8em;
+                            }
+                        }
+                    }
+
+                    .btn-container {
+                        margin-left: 0px;
+                        button {
+                            font-size: .6em;
+                            
+                            svg {
+                                height: 15px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .user-page-body-container {
+            display: flex;
+            flex-direction: column;
+            .side-bar {
+                align-items: center;
+                .about-container {
+                    margin: 0px;
+                    h3 {
+                        font-size: 1em;
+                    }
+
+                    span {
+                        font-size: .8em;
+                    }
+                    width: 80%;
+                }
+                .friends-container {
+                    margin: 0px;
+                    width: fit-content;
+                    .friends-container-header {
+                        .titles {
+                            h3 {
+                                font-size: .8em;
+                            }
+                        }
+                    }
+
+                    .friends {
+                        align-items: center;
+                        justify-content: center;
+                        .friend {
+                            svg, img {
+                                width: 70px;
+                                
+                            }
+                            
+                            h4 {
+                                font-size: .8em;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+    
+        }
+
+        .edit-user-container {
+            width: 450px;
+
+            .edit-header {
+                h1 {
+                    font-size: 2em;
+                }
+
+                svg {
+                   width: 40px; 
+                }
+            }
+
+            .edit-container {
+                h2 {
+                    font-size: 1.8em;
+                }
+                .images-container {
+
+                    .images {
+                        .image-overlay {
+                            width: 100px;
+                        }
+                        svg, img {
+                            width: 250px;
+                        }
+                    }
+                }
+
+                .about-edit-container {
+
+                    textarea {
+                        height: 150px;
+                        font-size: 1.2em;
+                    }
+                }
+            }
+
+            .btn-container {
+                button {
+                    font-size: 1.2em;
+                }
+            }
+        }
+      }
+
+
+      @media only screen and (min-width : 480px) 
+                         and (max-width : 880px) {
+        .user-page-header {
+            display: flex;
+            padding: 0px;
+            min-height: 200px;
+            .user-container {
+                .profile-header {
+
+                    .profile-pic-container {
+
+                        .profile-pic {
+                            img, svg {
+                                width: 150px !important;
+                            }
+                        }
+
+                        .change-profile-pic {
+                            right: 0px !important;
+                        }
+                        
+                    }
+
+                    .btn-container {
+                        margin-left: 0px;
+                        button {
+                            font-size: .8em;
+                            
+                        }
+                    }
+                }
+            }
+        }
+
+        .user-page-body-container {
+            display: flex;
+            flex-direction: column;
+            
+            .side-bar {
+                align-items: center;
+                justify-content: center;
+                margin: 0px;
+                .about-container {
+                    margin: 0px;
+                    h3 {
+                        font-size: 1em;
+                    }
+
+                    span {
+                        font-size: 1em;
+                    }
+                    width: 80%;
+                }
+                .friends-container {
+                    margin: 0px;
+                    max-width: fit-content;
+                    .friends-container-header {
+                        .titles {
+                            h3 {
+                                font-size: 1em;
+                            }
+                        }
+                    }
+
+                    .friends {
+                        .friend {
+                            svg, img {
+                                width: 90px;
+                                
+                            }
+                            
+                            h4 {
+                                font-size: .8em;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+    
+        }
+
+        .edit-user-container {
+            width: 450px;
+
+            .edit-header {
+                h1 {
+                    font-size: 2em;
+                }
+
+                svg {
+                   width: 40px; 
+                }
+            }
+
+            .edit-container {
+                h2 {
+                    font-size: 1.8em;
+                }
+                .images-container {
+
+                    .images {
+                        .image-overlay {
+                            width: 100px;
+                        }
+                        svg, img {
+                            width: 250px;
+                        }
+                    }
+                }
+
+                .about-edit-container {
+
+                    textarea {
+                        height: 150px;
+                        font-size: 1.2em;
+                    }
+                }
+            }
+
+            .btn-container {
+                button {
+                    font-size: 1.2em;
+                }
+            }
+        }
+       
+    }
+
+      @media only screen and (min-device-width : 880px) 
+                         and (max-device-width : 1024px) {
+        .user-page-header {
+            min-height: 170px;
+            .user-container {
+                .profile-header {
+                    .user-details {
+                        .profile-pic-container {
+                            .profile-pic {
+                                img, svg {
+                                    width: 150px;
+                                }
+                            }
+
+                            .change-profile-pic {
+                                right: 0px;
+                                svg {
+                                    height: 30px;
+                                }
+                            }
+                        }
+
+                        .name-friends-container {
+                            h1 {
+                                font-size: 1.3em;
+                            }
+
+                            .have-friends {
+                                h3 {
+                                    font-size: 1em;
+                                }
+                            }
+
+                            .friend-pics {
+                                svg, img {
+                                    height: 25px;
+                                }
+                            }
+                        }
+
+                    }
+                    .btn-container {
+                        button {
+                            font-size: 1em;
+
+                            svg {
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .user-page-body-container {
+            .side-bar {
+
+                .about-container {
+                    h3 {
+                        font-size: 1em;
+                    }
+
+                    span {
+                        font-size: 1em;
+                    }
+                    width: 200px;
+                }
+                .friends-container {
+                    width: 200px;
+                    .friends-container-header {
+                        .titles {
+                            h3 {
+                                font-size: 1em;
+                            }
+                        }
+                    }
+
+                    .friends {
+                        .friend {
+                            svg, img {
+                                width: 90px;
+                                
+                            }
+                            
+                            h4 {
+                                font-size: .8em;
+                                margin-bottom: 0px;
+                            }
+                        }
+                    }
+                }
+            }
+    
+        }
+       
+    }
+
+    @media only screen and (min-width: 1024px) and (max-width: 1250px) {
+        .user-page-body-container {
+            .side-bar {
+                .about-container {
+                    width: 265px;
+                }
+
+                .friends-container {
+                    width: 265px;
+                }
+            }
+        }
+    }
+
+      @media only screen and (min-width : 1921px) {
+        .user-page-header {
+            min-height: 400px;
+            .user-container {
+                .profile-header {
+                    .user-details {
+                        .profile-pic-container {
+                            .profile-pic {
+                                img, svg {
+                                    width: 300px;
+                                }
+                            }
+
+                            .change-profile-pic {
+                                svg {
+                                    height: 40px;
+                                }
+                            }
+                        }
+
+                        .name-friends-container {
+                            h1 {
+                                font-size: 3em;
+                            }
+
+                            .have-friends {
+                                h3 {
+                                    font-size: 1.4em;
+                                }
+                            }
+
+                            .friend-pics {
+                                svg, img {
+                                    height: 40px;
+                                }
+                            }
+                        }
+
+                    }
+                    .btn-container {
+                        button {
+                            font-size: 1.3em;
+
+                            svg {
+                                height: 25px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .user-page-body-container {
+            .side-bar {
+
+                .about-container {
+                    h3 {
+                        font-size: 1.5em;
+                    }
+
+                    span {
+                        font-size: 1.2em;
+                    }
+                    width: 550px;
+                }
+                .friends-container {
+                    width: 550px;
+                    .friends-container-header {
+                        .titles {
+                            h3 {
+                                font-size: 1.5em;
+                            }
+                        }
+                    }
+
+                    .friends {
+                        .friend {
+                            svg, img {
+                                width: 170px;
+                                
+                            }
+                            
+                            h4 {
+                                font-size: 1.1em;
+                            }
+                        }
+                    }
+                }
+            }
+            .post-footer {
+                .post-link {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        .edit-user-container {
+            width: 800px;
+
+            .edit-header {
+                h1 {
+                    font-size: 2.5em;
+                }
+
+                svg {
+                   width: 40px; 
+                }
+            }
+
+            .edit-container {
+                h2 {
+                    font-size: 1.8em;
+                }
+                .images-container {
+
+                    .images {
+                        .image-overlay {
+                            width: 150px;
+                        }
+                        svg, img {
+                            width: 350px;
+                        }
+                    }
+                }
+
+                .about-edit-container {
+
+                    textarea {
+                        height: 150px;
+                        font-size: 1.5em;
+                    }
+                }
+            }
+
+            .btn-container {
+                button {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
 }
 
 .center-loading {
-    margin-top: 200px;
+    height: 100vh;
     @include flexCenter(row);
+    @include themed() {
+        background-color: t("secondary-bg-color");
+        color: t("main-text-color"); 
+    }
 }
 

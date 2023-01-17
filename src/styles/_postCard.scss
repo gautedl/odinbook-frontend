@@ -13,8 +13,8 @@
     // @include flexCenter(column);
     background-color: white;
     border-radius: 20px;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
-    margin-bottom: 20px;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 12px;
+    margin-bottom: 0px;
 
     .text {
         word-wrap: break-word;
@@ -48,6 +48,7 @@
 
         .like-comments {
             display: flex;
+            align-items: center;
             gap: 35px;
 
             .click-comments {
@@ -59,17 +60,13 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
+
+                svg {
+                    height: 25px;
+                    border-radius: 0px;
+                   }
                 
-                button {
-                    padding: 5px 0px;
-                    font-size: 1em;
-                    background-color: rgba(226, 63, 63, 0.979);
-                    border: none;
-                    cursor: pointer;
-                    border-radius: 4px;
-                    width: 100px;
-                    
-                }
+            
             }
         }
     }
@@ -87,6 +84,7 @@
             @include themed() {
                 background-color: t("fifth-bg-color");
             };
+
             // background-color: rgb(238, 238, 238);
             color: black;
         }
@@ -96,6 +94,7 @@
             right: 40px;
             cursor: pointer;
             border-radius: 0px;
+            
         }
 
         textarea {
@@ -120,11 +119,7 @@
             // outline-color: $secondary-text-color;
         }
 
-        .search-field {
-            position: absolute;
-            top: 60px;
-            padding-left: 32px
-        }
+       
     }
 
     .err-cont {
@@ -164,10 +159,146 @@
             
         }
     }
+
+    @media only screen and (max-width : 480px) {
+        width: 90%;
+
+        .add-comment-container {
+        
+    
+            svg, img {
+                height: 30px;
+            }
+
+            .post-btn {
+                right: 40px;
+            }
+           
+        }
+    
+    }
+
+    @media only screen and (min-width : 480px) and (max-width: 768px) {
+        width: 90%;
+
+        .add-comment-container {
+        
+    
+            svg, img {
+                height: 30px;
+            }
+
+            .post-btn {
+                right: 40px;
+            }
+           
+        }
+    
+    }
+
+    @media only screen and (min-width : 768px) 
+                        and (max-width : 1024px) {
+        width: 500px;
+        gap: 5px;
+
+
+
+        .add-comment-container {
+        
+    
+            svg, img {
+                height: 30px;
+            }
+
+            .post-btn {
+                right: 40px;
+            }
+           
+        }
+    
+    }
+
+    @media only screen and (min-width : 1921px) {
+        width: 1000px;
+        gap: 10px;
+
+        svg, img {
+            height: 100px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        .text {
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 0px;
+        }
+
+        .footer-container {
+            p {
+                font-size: 1em;
+            }
+
+            .like-comments {
+    
+                
+                .like-container {
+                   svg {
+                    height: 50px;
+                    border-radius: 0px;
+                   }
+                }
+            }
+        }
+
+        .add-comment-container {
+        
+    
+            svg, img {
+                height: 50px;
+            }
+
+            .post-btn {
+                right: 70px;
+            }
+    
+    
+        
+            textarea {
+                height: 50px;
+                font-size: 1.3em;
+            }
+           
+        }
+
+        .comment-footer {
+    
+            .comment-link {
+                font-size: 20px;
+            }
+        }
+
+        .posts-container {
+            gap: 20px;
+        }
+    
+    }
     
 }
 
 .posts-container {
-    @include flexCenter(column)
+    @include flexCenter(column);
+    gap: 20px;
+
+    @media only screen and (min-width : 480px) {
+
+        width: 100%;
+    
+
+    }
+
 }
+
 

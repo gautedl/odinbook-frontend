@@ -1,13 +1,20 @@
-import CreatePost from '../Dashboard/CreatePost';
 import DisplayPosts from '../Dashboard/DisplayPosts';
 import Loading from '../HelperComponents/Loading';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
+import { useState } from 'react';
 
 const UserPageBody = ({ user }) => {
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
   const equalFriends = user.friends.filter((el) =>
     loggedInUser.friends.includes(el._id)
   );
+
+  // Code to showcase more friends
+  // const [numberFriends, setNumberFriends] = useState(6);
+
+  // // const seeMoreFriends = () => {
+  // //   setNumberFriends(numberFriends + 6);
+  // // };
 
   return (
     <>
@@ -44,7 +51,9 @@ const UserPageBody = ({ user }) => {
               <div className="friends-container-header">
                 <div className="titles">
                   <h3>Friends</h3>
-                  <h3 className="see-all">See all friends</h3>
+                  {/* <h3 className="see-all" onClick={seeMoreFriends}>
+                    See more friends
+                  </h3> */}
                 </div>
                 {user._id === loggedInUser._id ? (
                   <></>
@@ -54,7 +63,7 @@ const UserPageBody = ({ user }) => {
               </div>
               <div className="friends">
                 {user._id === loggedInUser._id
-                  ? user.friends.map((friend) => (
+                  ? user.friends.map((friend, i) => (
                       <div className="friend" key={friend._id}>
                         <ProfilePicture user={friend} />
                         <h4>{friend.name}</h4>
@@ -72,12 +81,13 @@ const UserPageBody = ({ user }) => {
           <div className="users-posts">
             {user._id === loggedInUser._id ? (
               <>
-                <DisplayPosts route="get_own_posts" />
+                <DisplayPosts user={user} />
               </>
             ) : (
-              <DisplayPosts route={`get_user_post/${user._id}`} />
+              <DisplayPosts user={user} />
             )}
           </div>
+          <div></div>
         </div>
       )}
     </>

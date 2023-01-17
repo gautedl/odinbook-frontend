@@ -25,7 +25,6 @@ const CreatePost = ({ setDisplayedPosts, displayedPosts }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.message !== 'posted') {
           setErrorMsg(data);
         }

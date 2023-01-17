@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 import axios from 'axios';
 
@@ -28,7 +28,6 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
   };
 
   const saveChanges = () => {
-    console.log(aboutUser);
     const req = {
       about: aboutUser,
     };
@@ -48,6 +47,20 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
         }
       });
   };
+
+  const handleWindowClick = (e) => {
+    if (e.target.id === 'page-mask') {
+      setShowEditUser(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('click', handleWindowClick);
+
+    return () => {
+      window.removeEventListener('click', handleWindowClick);
+    };
+  }, []);
 
   return (
     <>
@@ -78,31 +91,37 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
               <div className="container-header">
                 <h2>Profile Picture</h2>
               </div>
-              <div className="images">
-                <ProfilePicture user={user} showLink={false} />
-                <input
-                  type="file"
-                  ref={hiddenFileInput}
-                  onChange={handleFileChange}
-                  style={{ display: 'none' }}
-                  name="profilePicture"
-                />
-                <svg
-                  onClick={changeProfilePic}
-                  className="image-overlay"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M13 21H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6V13"></path>
-                  <path d="m3 16 7-3 5.5 2.5"></path>
-                  <path d="M16 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"></path>
-                  <path d="M19 19v3m-3-3h3-3Zm6 0h-3 3Zm-3 0v-3 3Z"></path>
-                </svg>
+              <div className="images-container">
+                <div className="images">
+                  <input
+                    type="file"
+                    ref={hiddenFileInput}
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                    name="profilePicture"
+                  />
+                  <ProfilePicture
+                    cClass="edit-user-pic"
+                    user={user}
+                    showLink={false}
+                  />
+                  <svg
+                    onClick={changeProfilePic}
+                    className="image-overlay"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M13 21H3.6a.6.6 0 0 1-.6-.6V3.6a.6.6 0 0 1 .6-.6h16.8a.6.6 0 0 1 .6.6V13"></path>
+                    <path d="m3 16 7-3 5.5 2.5"></path>
+                    <path d="M16 10a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"></path>
+                    <path d="M19 19v3m-3-3h3-3Zm6 0h-3 3Zm-3 0v-3 3Z"></path>
+                  </svg>
+                </div>
               </div>
             </div>
             <div className="edit-container">
@@ -125,7 +144,7 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
               <button onClick={saveChanges}>Save Changes</button>
             </div>
           </div>
-          <div className="page-mask"></div>
+          <div className="page-mask" id="page-mask"></div>
         </>
       )}
     </>

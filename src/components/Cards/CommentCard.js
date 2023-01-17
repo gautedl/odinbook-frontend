@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { defaultUserPic } from '../../assets/SVG/svg';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ProfilePicture from '../HelperComponents/ProfilePicture';

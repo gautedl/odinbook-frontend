@@ -23,7 +23,7 @@ export default function ThemeSetter() {
   return (
     <>
       <button className="input-toggle" id="settings" onClick={switchTheme}>
-        Swith theme
+        Switch theme
       </button>
 
       {theme === '' ? (

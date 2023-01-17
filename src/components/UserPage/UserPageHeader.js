@@ -155,10 +155,11 @@ const UserPageHeader = ({ user }) => {
 
   return (
     <>
-      {user === undefined ? (
-        <></>
-      ) : (
-        <div className="user-page-header">
+      <div className="user-page-header">
+        <div></div>
+        {user === undefined ? (
+          <></>
+        ) : (
           <div className="user-container">
             <div className="profile-header">
               <div className="user-details">
@@ -265,8 +266,9 @@ const UserPageHeader = ({ user }) => {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+        <div></div>
+      </div>
       {showEditUser && (
         <EditUser
           user={user}

@@ -3,7 +3,6 @@
 
 .login-container {
     @include flexCenter(column);
-    height: 90vh;
     @include themed() {
         background-color: t("secondary-bg-color");
         color: t("main-text-color"); 
@@ -111,30 +110,68 @@
 
 
     }
-}
 
-@media (max-width: 420px){
-    .login-container {
-        margin: 0px 20px;
-
+    @media only screen and (min-width : 1921px) {
         .greeting {
             h1 {
-                font-size: 1.5em;
+                font-size: 4em;
             }
         }
 
-        .login-field {    
+        .login-field {
+            margin-bottom: 300px;
+
             form {
-                .input-field {               
+                
+    
+                .input-field {
+
                     input {
-                        width: 80vw;
-                        height: 30px;
-                        border-radius: 8px;
-                        border: 1px lightgrey solid;
+                        margin-bottom: 10px;
+                        width: 570px;
+                        height: 40px;
+                        font-size: 1.5em;
                     }
+                }
+    
+                button {
+                    padding: 5px 0px;
+                    font-size: 1.5em;
                 }
             }
     
+            .sign-up {
+                font-size: 1.2em;
+            }
+    
+    
+        }
     }
-}
+
+    @media (max-width: 420px){
+
+            margin: 0px 20px;
+    
+            .greeting {
+                h1 {
+                    font-size: 1.5em;
+                }
+            }
+    
+            .login-field {    
+                form {
+                    .input-field {               
+                        input {
+                            width: 80vw;
+                            height: 30px;
+                            border-radius: 8px;
+                            border: 1px lightgrey solid;
+                        }
+                    }
+                }
+        
+        }
+    
+    }
+
 }

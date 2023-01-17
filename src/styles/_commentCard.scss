@@ -11,8 +11,7 @@
 
     .user-pic {
         img {
-
-            height: 40px;
+            height: 50px;
         }
     }
 
@@ -61,5 +60,77 @@
             display: flex;
             align-items: center;
         }
+    }
+
+    @media only screen and (min-device-width : 768px) 
+                        and (max-device-width : 1024px) {
+        .user-pic {
+            img {
+    
+                height: 40px;
+            }
+        }
+
+        .comment-info {
+            .comment-box {
+                .box {
+
+                    h3 {
+
+                        font-size: 1em;
+                    }
+    
+                    span {
+                        font-size: 1em;
+                    }
+                }
+    
+            }
+            
+        }
+
+    }
+
+    @media only screen and (min-width : 1921px) {
+        .user-pic {
+            img {
+    
+                height: 50px;
+            }
+        }
+
+        .comment-info {
+            .comment-box {
+                .box {
+                    padding: 12px 15px;
+    
+                    h3 {
+                        margin: 0;
+                        opacity: .8;
+                        font-size: 1.5em;
+                    }
+    
+                    span {
+                        font-size: 1.3em;
+                        word-wrap: break-word;
+                        display: inline-block;
+                    }
+                }
+    
+            }
+            
+        }
+
+        .comment-info-footer {
+            font-size: 1em;
+    
+            .likes {
+                svg {
+                    height: 35px;
+                }
+            }
+        }
+
+    
     }
 }

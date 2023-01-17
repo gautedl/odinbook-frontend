@@ -5,6 +5,7 @@ import NavBar from '../Nav/NavBar';
 const Home = () => {
   const userName = JSON.parse(localStorage.getItem('user')).name;
   const userID = JSON.parse(localStorage.getItem('user'))._id;
+  const user = JSON.parse(localStorage.getItem('user'));
 
   return (
     <>
@@ -15,8 +16,9 @@ const Home = () => {
             <SideBar id={userID} username={userName} />
           </div>
           <div className="dashboard-container">
-            <DisplayPosts route="get_display_posts" />
+            <DisplayPosts route="get_display_posts" user={user} />
           </div>
+          <div className="dashboard-container"></div>
         </div>
       </div>
     </>

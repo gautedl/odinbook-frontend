@@ -3,22 +3,33 @@ import PostCard from '../Cards/PostCard';
 import Loading from '../HelperComponents/Loading';
 import CreatePost from './CreatePost';
 
-const DisplayPosts = ({ route }) => {
+const DisplayPosts = ({ user = null, route }) => {
   //   const [ownPosts, setOwnPosts] = useState([]);
   //   const [friendsPosts, setFriendsPosts] = useState([]);
+  // const { id } = useParams();
   const [displayedPosts, setDisplayedPosts] = useState([]);
   const [num, setNum] = useState(5);
   const [slicedArray, setSlicedArray] = useState(displayedPosts.slice(0, num));
 
+  const loggedInUser = JSON.parse(localStorage.getItem('user'));
+
   // const slicedArray = displayedPosts.slice(0, num);
 
   useEffect(() => {
-    fetch(`/post/${route}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDisplayedPosts(data);
-      });
-  }, [route]);
+    if (route !== 'get_display_posts') {
+      fetch(`/post/get_user_post/${user._id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDisplayedPosts(data);
+        });
+    } else if (route === 'get_display_posts') {
+      fetch(`/post/get_display_posts`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDisplayedPosts(data);
+        });
+    }
+  }, [user._id, route]);
 
   useEffect(() => {
     setSlicedArray(displayedPosts.slice(0, num));
@@ -34,13 +45,17 @@ const DisplayPosts = ({ route }) => {
 
   return (
     <div className="posts-container">
-      <CreatePost
-        setDisplayedPosts={setDisplayedPosts}
-        displayedPosts={displayedPosts}
-      />
-      {displayedPosts.length === 0 ? (
+      {user._id === loggedInUser._id ? (
+        <CreatePost
+          setDisplayedPosts={setDisplayedPosts}
+          displayedPosts={displayedPosts}
+        />
+      ) : (
+        <></>
+      )}
+      {slicedArray.length === 0 ? (
         <Loading />
-      ) : displayedPosts === 'No posts' ? (
+      ) : slicedArray === 'No po' ? (
         <p>No Posts..</p>
       ) : (
         <>

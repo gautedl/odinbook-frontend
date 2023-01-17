@@ -3,7 +3,12 @@ import { defaultUserPic } from '../../assets/SVG/svg';
 import { Buffer } from 'buffer';
 import { Link } from 'react-router-dom';
 
-const ProfilePicture = ({ user, id = '', showLink = true }) => {
+const ProfilePicture = ({
+  user,
+  id = '',
+  showLink = true,
+  cClass = 'profile-picture-div',
+}) => {
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -23,11 +28,11 @@ const ProfilePicture = ({ user, id = '', showLink = true }) => {
   return (
     <>
       {showLink === true ? (
-        <div className="profile-picture-div">
+        <div className={cClass}>
           <Link to={`/user/page/${user._id}`}>{image}</Link>
         </div>
       ) : (
-        <div className="profile-picture-div">{image}</div>
+        <div className={cClass}>{image}</div>
       )}
     </>
   );

@@ -54,8 +54,6 @@ const PostCard = (props) => {
         getLikes();
         setLikeButton(
           <svg
-            width="25"
-            height="25"
             fill="#13aff0"
             stroke="currentColor"
             strokeLinecap="round"
@@ -90,8 +88,6 @@ const PostCard = (props) => {
         getLikes();
         setLikeButton(
           <svg
-            width="25"
-            height="25"
             fill="none"
             stroke="currentColor"
             strokeLinecap="round"
@@ -111,8 +107,6 @@ const PostCard = (props) => {
   const [likeButton, setLikeButton] = useState(
     props.likedByUsers.includes(userID) ? (
       <svg
-        width="25"
-        height="25"
         fill="#13aff0"
         stroke="currentColor"
         strokeLinecap="round"
@@ -127,8 +121,6 @@ const PostCard = (props) => {
       </svg>
     ) : (
       <svg
-        width="25"
-        height="25"
         fill="none"
         stroke="currentColor"
         strokeLinecap="round"

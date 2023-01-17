@@ -11,7 +11,7 @@
     padding: 15px 25px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 3px 1px;
     border-radius: 8px;
-    width: 250px;
+    min-width: 250px;
     margin-top: -5px;
 
     .pop-grid {
@@ -33,4 +33,50 @@
 
         @include buttonSecond($btn-color)
     }
+
+    @media screen and (max-width: 500px) {
+        min-width: 150px;
+        padding: 5px 10px;
+        .pop-grid {
+            
+            .user-info {
+
+                h2 {
+                    font-size: .8em;
+                }
+                p {
+                    font-size: .7em;
+                }
+                svg, img {
+                    height: 50px;
+                }
+            }
+        }
+
+        .pop-card-btn-container {
+            margin-top: 15px;
+            
+            button {
+                font-size: .5em;
+            }
+        }
+    }
+
+    @media only screen and (min-width : 1921px) {
+        .pop-grid {
+
+            svg, img {
+                height: 100px;
+            }
+        }
+
+        .pop-card-btn-container {
+            margin-top: 15px;
+            
+            button {
+                font-size: 1em;
+            }
+        }
+    }
 }
+

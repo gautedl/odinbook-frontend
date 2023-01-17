@@ -12,7 +12,7 @@
     // background-color: $fourth-bg-color;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 0.1) 0px 4px 12px;
 
     .user {
         @include flexCenter(row);
@@ -62,6 +62,67 @@
 
             h3 {
                 margin: 0px;
+            }
+        }
+    }
+
+
+
+    @media only screen and (min-device-width : 768px) 
+                        and (max-device-width : 1024px) {
+        width: 140px;
+
+        .user {
+            svg, img {
+                height: 40px;
+            }
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+
+        .friend-list {
+            h2 {
+                font-size: 1.2em;
+            }
+
+            h3 {
+                font-size: .8em;
+            }
+
+            .friend {
+                img, svg {
+                    height: 35px;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-width : 1921px) {
+        width: 500px;
+
+        .user {
+            svg, img {
+                height: 80px;
+            }
+            margin-bottom: 20px;
+        }
+
+        .friend-list {
+            gap: 15px;
+            h2 {
+                font-size: 1.9em;
+                margin-bottom: 0px;
+            }
+            
+            h3 {
+                font-size: 1.6em;
+            }
+
+            .friend {
+                img, svg {
+                    height: 60px;
+                }
             }
         }
     }

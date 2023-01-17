@@ -47,6 +47,12 @@ const ProfilePop = ({ open }) => {
                 <h3>Settings</h3>
               </li>
       </Link>*/}
+            <Link to="/home">
+              <li>
+                <h1 className="ob">OB</h1>
+                <h3>Home</h3>
+              </li>
+            </Link>
             <li onClick={logOut}>
               <svg
                 fill="none"

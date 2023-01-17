@@ -2,18 +2,26 @@
 @import './mixins';
 
 .home {
-    height: 100vh;
+    // height: 100vh;
     @include themed() {
         background-color: t("secondary-bg-color");
         color: t("main-text-color"); 
     }
     .dashboard {
-        padding: 40px 60px;
+        padding: 40px 0px;
         display: grid;
-        grid-template-columns: 1fr 8fr;
+        grid-template-columns: 1fr 2fr 1fr;
         justify-content: center;
         align-items: flex-start;
-        gap: 150px;
+        // gap: 50px;
+
+        .side-bar {
+            display: flex;
+            justify-content: center;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
 
     }
 
@@ -44,5 +52,69 @@
         }
     }
 
+    @media only screen and (max-width : 480px) {
+        .dashboard {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+
+            .side-bar {
+                display: none;
+            }
+
+            .dashboard-container {
+                width: 100%;
+            }
+
+            .post-footer {
+                .post-link {
+                    font-size: 1em;
+                }
+            }
+
+        }
+    }
+
+    @media only screen and (min-width : 480px) and (max-width : 768px) {
+        .dashboard {
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+
+            .side-bar {
+                display: none;
+            }
+
+            .dashboard-container {
+                width: 100%;
+            }
+            
+            .post-footer {
+                .post-link {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+    @media only screen and (min-device-width : 768px) 
+                        and (max-device-width : 1024px) 
+                         {
+
+        .post-footer {
+            .post-link {
+                font-size: 1em;
+            }
+        }
+    }
+
+    @media only screen and (min-width : 1921px) {
+        .post-footer {
+            .post-link {
+                font-size: 1.5em;
+            }
+        }
+    }
 
 }
+
