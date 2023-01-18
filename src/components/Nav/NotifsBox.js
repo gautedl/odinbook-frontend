@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { AcceptButton, DeclineButton } from '../HelperComponents/Buttons';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 
-const NotifsBox = ({ notifsValue }) => {
+const NotifsBox = ({
+  setFriendRequestNotifsLength,
+  friendRequestNotifsLength,
+}) => {
   const [friendRequestNotifs, setFriendRequestNotifs] = useState();
 
   const token = `Bearer ${localStorage.getItem('token')}`;
@@ -27,7 +30,7 @@ const NotifsBox = ({ notifsValue }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data === 'accepted') {
-          return console.log('friend, added');
+          setFriendRequestNotifsLength(friendRequestNotifsLength - 1);
         } else {
           return console.log(data.message);
         }
@@ -45,7 +48,7 @@ const NotifsBox = ({ notifsValue }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data === 'rejected') {
-          return console.log('Declined');
+          setFriendRequestNotifsLength(friendRequestNotifsLength - 1);
         } else {
           return console.log(data.message);
         }

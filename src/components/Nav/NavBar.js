@@ -33,7 +33,12 @@ const NavBar = () => {
 
   const showNotifs = () => {
     if (showAlerts === undefined) {
-      setShowAlerts(<NotifsBox />);
+      setShowAlerts(
+        <NotifsBox
+          setFriendRequestNotifsLength={setFriendRequestNotifsLength}
+          friendRequestNotifsLength={friendRequestNotifsLength}
+        />
+      );
     } else {
       setShowAlerts(undefined);
     }

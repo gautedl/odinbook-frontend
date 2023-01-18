@@ -81,7 +81,7 @@ const UserPageHeader = ({ user, setUser }) => {
           );
         } else if (data === 'Request sent') {
           setFriendReqBtn(
-            <button onClick={deleteReq}>
+            <button>
               {' '}
               <svg
                 fill="currentColor"
@@ -95,11 +95,12 @@ const UserPageHeader = ({ user, setUser }) => {
                 ></path>
                 <path d="M12.48 9.199V4.48a.3.3 0 0 0-.492-.23L9.156 6.608a.3.3 0 0 0 0 .461l2.832 2.36a.3.3 0 0 0 .492-.231Z"></path>
               </svg>
-              Undo Friend Request
+              {/* Undo Friend Request */}
+              Request Sent
             </button>
           );
         } else if (data === 'Request received') {
-          setFriendReqBtn(<button>Answer Request</button>);
+          setFriendReqBtn(<button>Request Received</button>);
         } else if (data === 'Friends' || data === 'accepted') {
           setFriendReqBtn(
             <button>
@@ -157,12 +158,9 @@ const UserPageHeader = ({ user, setUser }) => {
         fetch(`/user/get_current_user`)
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             setUser(data);
           });
       }
-
-      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
