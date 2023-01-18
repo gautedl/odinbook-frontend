@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/odinbook/static/css/main.aff0a95a.css",
+    "main.js": "/odinbook/static/js/main.071af983.js",
+    "index.html": "/odinbook/index.html",
+    "main.aff0a95a.css.map": "/odinbook/static/css/main.aff0a95a.css.map",
+    "main.071af983.js.map": "/odinbook/static/js/main.071af983.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.aff0a95a.css",
+    "static/js/main.071af983.js"
+  ]
+}
