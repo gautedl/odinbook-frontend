@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/odinbook/static/css/main.aff0a95a.css",
-    "main.js": "/odinbook/static/js/main.071af983.js",
-    "index.html": "/odinbook/index.html",
-    "main.aff0a95a.css.map": "/odinbook/static/css/main.aff0a95a.css.map",
-    "main.071af983.js.map": "/odinbook/static/js/main.071af983.js.map"
+    "main.css": "/odinbook-frontend/static/css/main.aff0a95a.css",
+    "main.js": "/odinbook-frontend/static/js/main.071af983.js",
+    "index.html": "/odinbook-frontend/index.html",
+    "main.aff0a95a.css.map": "/odinbook-frontend/static/css/main.aff0a95a.css.map",
+    "main.071af983.js.map": "/odinbook-frontend/static/js/main.071af983.js.map"
   },
   "entrypoints": [
     "static/css/main.aff0a95a.css",
