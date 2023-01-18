@@ -25,8 +25,8 @@ const UserPage = () => {
           </div>
         ) : (
           <>
-            <UserPageHeader user={user} />
-            <UserPageBody user={user} />
+            <UserPageHeader user={user} setUser={setUser} />
+            <UserPageBody user={user} setUser={setUser} />
             <div></div>
           </>
         )}

@@ -8,6 +8,7 @@ const ProfilePicture = ({
   id = '',
   showLink = true,
   cClass = 'profile-picture-div',
+  userPicRoute,
 }) => {
   const [image, setImage] = useState();
 
@@ -23,7 +24,7 @@ const ProfilePicture = ({
     } else {
       setImage(defaultUserPic);
     }
-  }, [user.profilePicture, id]);
+  }, [user.profilePicture, id, userPicRoute]);
 
   return (
     <>

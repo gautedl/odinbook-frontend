@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 import axios from 'axios';
 
-const EditUser = ({ user, showEditUser, setShowEditUser }) => {
+const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
   const [aboutUser, setAboutUser] = useState(user.about);
   const hiddenFileInput = useRef(null);
 
@@ -21,7 +21,18 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
 
       const response = await axios.post('/user/upload_profile_picture', fd, {});
 
-      console.log(response.data);
+      if (response.data.msg === 'Updated') {
+        let picRoute = JSON.parse(localStorage.getItem('user'));
+        picRoute.profilePicture.data = response.data.route;
+        picRoute.profilePicture.contentType = response.data.mimetype;
+        localStorage.setItem('user', JSON.stringify(picRoute));
+
+        fetch(`/user/get_current_user`)
+          .then((res) => res.json())
+          .then((data) => {
+            setUser(data);
+          });
+      }
     } catch (err) {
       console.error(err);
     }
@@ -43,6 +54,16 @@ const EditUser = ({ user, showEditUser, setShowEditUser }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data === 'updated') {
+          let curUser = JSON.parse(localStorage.getItem('user'));
+          curUser.about = aboutUser;
+          localStorage.setItem('user', JSON.stringify(curUser));
+          fetch(`/user/get_current_user`)
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              setUser(data);
+            });
+
           setShowEditUser(false);
         }
       });

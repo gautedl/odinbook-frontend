@@ -5,12 +5,13 @@ import axios from 'axios';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 import EditUser from './EditUser';
 
-const UserPageHeader = ({ user }) => {
+const UserPageHeader = ({ user, setUser }) => {
   const { id } = useParams();
   const [FriendReqBtn, setFriendReqBtn] = useState();
   const [friendPopup, setFriendPopup] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [showEditUser, setShowEditUser] = useState(false);
+
   const popupRef = useRef(null);
 
   const userID = JSON.parse(localStorage.getItem('user'))._id;
@@ -147,6 +148,20 @@ const UserPageHeader = ({ user }) => {
 
       const response = await axios.post('/user/upload_profile_picture', fd, {});
 
+      if (response.data.msg === 'Updated') {
+        let picRoute = JSON.parse(localStorage.getItem('user'));
+        picRoute.profilePicture.data = response.data.route;
+        picRoute.profilePicture.contentType = response.data.mimetype;
+        localStorage.setItem('user', JSON.stringify(picRoute));
+
+        fetch(`/user/get_current_user`)
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setUser(data);
+          });
+      }
+
       console.log(response.data);
     } catch (err) {
       console.error(err);
@@ -274,6 +289,7 @@ const UserPageHeader = ({ user }) => {
           user={user}
           setShowEditUser={setShowEditUser}
           showEditUser={showEditUser}
+          setUser={setUser}
         />
       )}
     </>

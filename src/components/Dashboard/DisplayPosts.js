@@ -4,16 +4,11 @@ import Loading from '../HelperComponents/Loading';
 import CreatePost from './CreatePost';
 
 const DisplayPosts = ({ user = null, route }) => {
-  //   const [ownPosts, setOwnPosts] = useState([]);
-  //   const [friendsPosts, setFriendsPosts] = useState([]);
-  // const { id } = useParams();
   const [displayedPosts, setDisplayedPosts] = useState([]);
   const [num, setNum] = useState(5);
   const [slicedArray, setSlicedArray] = useState(displayedPosts.slice(0, num));
 
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
-
-  // const slicedArray = displayedPosts.slice(0, num);
 
   useEffect(() => {
     if (route !== 'get_display_posts') {
@@ -59,19 +54,37 @@ const DisplayPosts = ({ user = null, route }) => {
         <p>No Posts..</p>
       ) : (
         <>
-          {slicedArray.map((post) => (
-            <PostCard
-              // route={'post'}
-              likes={post.likes}
-              text={post.text}
-              date={post.createdAt}
-              key={post._id}
-              id={post._id}
-              user={post.user}
-              likedByUsers={post.likedByUser}
-              comments={post.comments}
-            />
-          ))}
+          {slicedArray.map((post) => {
+            if (user._id === loggedInUser._id) {
+              return (
+                <PostCard
+                  // route={'post'}
+                  likes={post.likes}
+                  text={post.text}
+                  date={post.createdAt}
+                  key={post._id}
+                  id={post._id}
+                  user={loggedInUser}
+                  likedByUsers={post.likedByUser}
+                  comments={post.comments}
+                />
+              );
+            } else {
+              return (
+                <PostCard
+                  // route={'post'}
+                  likes={post.likes}
+                  text={post.text}
+                  date={post.createdAt}
+                  key={post._id}
+                  id={post._id}
+                  user={post.user}
+                  likedByUsers={post.likedByUser}
+                  comments={post.comments}
+                />
+              );
+            }
+          })}
           <div className="post-footer">
             {slicedArray.length === num ? (
               <p className="post-link" onClick={showMore}>
