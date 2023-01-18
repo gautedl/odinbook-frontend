@@ -7,9 +7,9 @@ export default function ThemeSetter() {
 
   const switchTheme = (e) => {
     e.preventDefault();
-    const currentTheme =
-      e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode
-        .parentNode.parentNode.parentNode.className;
+    const currentTheme = document
+      .getElementById('theme-provider')
+      .getAttribute('data-theme');
 
     if (currentTheme === 'theme--light') {
       setTheme('dark');
