@@ -28,7 +28,6 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
       if (response.data.msg === 'Updated') {
         let picRoute = JSON.parse(localStorage.getItem('user'));
         if (picRoute.profilePicture) {
-          console.log('ye');
           picRoute.profilePicture.data = response.data.route;
           picRoute.profilePicture.contentType = response.data.mimetype;
         } else {
@@ -74,7 +73,6 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
           fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
               setUser(data);
             });
 

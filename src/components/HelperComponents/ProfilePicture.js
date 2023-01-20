@@ -30,7 +30,7 @@ const ProfilePicture = ({
     <>
       {showLink === true ? (
         <div className={cClass}>
-          <Link to={`/odinbook-frontend/user/page/${user._id}`}>{image}</Link>
+          <Link to={`/user/page/${user._id}`}>{image}</Link>
         </div>
       ) : (
         <div className={cClass}>{image}</div>

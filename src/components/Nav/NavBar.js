@@ -97,7 +97,7 @@ const NavBar = () => {
 
   return (
     <nav className="nav-container">
-      <Link to="/odinbook-frontend/home" className="nav-title">
+      <Link to="/home" className="nav-title">
         <h1>OdinBook</h1>
       </Link>
       <div className="search-container">

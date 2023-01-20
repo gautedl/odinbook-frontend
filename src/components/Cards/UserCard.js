@@ -9,10 +9,10 @@ const UserCard = (props) => {
   const navigate = useNavigate();
 
   const goToUser = () => {
-    navigate(`/odinbook-frontend/user/page/${props.user._id}`);
+    navigate(`/user/page/${props.user._id}`);
   };
 
-  const sendMsg = () => {};
+  // const sendMsg = () => {};
 
   return (
     <div className="pop-card-container" onMouseLeave={props.leave}>
@@ -33,7 +33,7 @@ const UserCard = (props) => {
       </div>
       <div className="pop-card-btn-container">
         <button onClick={goToUser}>Go To User</button>
-        <button onClick={sendMsg}>Send msg</button>
+        {/* <button onClick={sendMsg}>Send msg</button> */}
       </div>
     </div>
   );

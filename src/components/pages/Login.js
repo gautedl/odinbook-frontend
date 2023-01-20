@@ -25,7 +25,6 @@ const Login = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status !== 200) {
           console.log('Error');
           return;
@@ -36,7 +35,7 @@ const Login = () => {
         // Stores the user credentials in locale storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/odinbook-frontend/home');
+        navigate('/home');
       });
   };
 
@@ -66,30 +65,30 @@ const Login = () => {
         // Stores the user credentials in locale storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/odinbook-frontend/home');
+        navigate('/home');
       });
   };
 
-  const fbHandler = (e) => {
-    e.preventDefault();
-    // navigate('/auth/facebook');
-    axios
-      .get('/auth/facebook')
-      .then((res) => {
-        if (res.data.status === 'success') {
-          // handle successful login
-          localStorage.setItem('token', res.data.token);
-          localStorage.setItem('user', JSON.stringify(res.data.user));
-        } else {
-          console.log(res.data.message);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  // const fbHandler = (e) => {
+  //   e.preventDefault();
+  //   // navigate('/auth/facebook');
+  //   axios
+  //     .get('/auth/facebook')
+  //     .then((res) => {
+  //       if (res.data.status === 'success') {
+  //         // handle successful login
+  //         localStorage.setItem('token', res.data.token);
+  //         localStorage.setItem('user', JSON.stringify(res.data.user));
+  //       } else {
+  //         console.log(res.data.message);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
 
-    // window.open('http://localhost:3001/auth/facebook');
-  };
+  //   // window.open('http://localhost:3001/auth/facebook');
+  // };
 
   return (
     <div className="login-container">
@@ -130,13 +129,13 @@ const Login = () => {
           <button className="test" onClick={signInTest}>
             Sign in with test user
           </button>
-          <button className="fb" onClick={fbHandler}>
+          {/* <button className="fb" onClick={fbHandler}>
             Log in with Facebook
-          </button>
+          </button> */}
         </form>
         <div className="sign-up">
           <p>Not a user?</p>{' '}
-          <Link className="link" to="/odinbook-frontend/sign_up">
+          <Link className="link" to="/sign_up">
             Sign up
           </Link>
         </div>

@@ -13,12 +13,12 @@ const ProfilePop = ({ open }) => {
     //     if (data === 'logged out') {
     //       localStorage.removeItem('token');
     //       localStorage.removeItem('user');
-    //       navigate('/odinbook-frontend/');
+    //       navigate('/');
     //     }
     //   });
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    navigate('/odinbook-frontend/');
+    navigate('/');
   };
 
   return (
@@ -28,7 +28,7 @@ const ProfilePop = ({ open }) => {
       ) : (
         <div className="profile-box" id="profile-pic">
           <ul>
-            <Link to={`/odinbook-frontend/user/page/${user._id}`}>
+            <Link to={`/user/page/${user._id}`}>
               <li>
                 <ProfilePicture user={user} showLink={false} />
                 <h3>{user.name}</h3>
@@ -51,7 +51,7 @@ const ProfilePop = ({ open }) => {
                 <h3>Settings</h3>
               </li>
       </Link>*/}
-            <Link to="/odinbook-frontend/home">
+            <Link to="/home">
               <li>
                 <h1 className="ob">OB</h1>
                 <h3>Home</h3>

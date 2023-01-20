@@ -12,18 +12,18 @@ const StartupRouter = () => {
     //     if (data !== 'Logged in') {
     //       localStorage.removeItem('token');
     //       localStorage.removeItem('user');
-    //       navigate('/odinbook-frontend/login');
+    //       navigate('/login');
     //     } else {
-    //       navigate('/odinbook-frontend/home');
+    //       navigate('/home');
     //     }
     //   });
 
     if (!localStorage.getItem('user')) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      navigate('/odinbook-frontend/login');
+      navigate('/login');
     } else {
-      navigate('/odinbook-frontend/home');
+      navigate('/home');
     }
   });
 

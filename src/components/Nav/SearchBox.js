@@ -53,9 +53,7 @@ const SearchBox = ({ srcValue }) => {
                 return (
                   <li id="search" key={data._id}>
                     <ProfilePicture user={data} />
-                    <Link to={`/odinbook-frontend/user/page/${data._id}`}>
-                      {data.name}
-                    </Link>
+                    <Link to={`/user/page/${data._id}`}>{data.name}</Link>
                   </li>
                 );
               }

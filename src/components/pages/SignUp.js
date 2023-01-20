@@ -38,7 +38,7 @@ const SignUp = () => {
           setErrorMsg(<p className="err-msg">{user[0].msg}</p>);
           return;
         } else {
-          navigate('/odinbook-frontend/login');
+          navigate('/login');
         }
       });
   };
