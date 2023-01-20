@@ -25,8 +25,7 @@ const UserPageBody = ({ user }) => {
           <div className="side-bar">
             <div className="about-container">
               <h3>About</h3>
-              {user.about ===
-              (
+              {user.about === undefined ? (
                 <span>
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                   Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
@@ -41,8 +40,6 @@ const UserPageBody = ({ user }) => {
                   consequat vitae, eleifend ac, enim. Aliquam lorem ante,
                   dapibus in, viverra quis, feugiat a,
                 </span>
-              ) ? (
-                <></>
               ) : (
                 <span>{user.about}</span>
               )}

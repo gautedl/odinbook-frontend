@@ -1,25 +1,34 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../components/HelperComponents/Loading';
 
 const StartupRouter = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/user/isLoggedIn')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data !== 'Logged in') {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          navigate('/login');
-        } else {
-          navigate('/home');
-        }
-      });
+    // fetch('https://gautedl-odinbook.onrender.com/user/isLoggedIn')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data !== 'Logged in') {
+    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('user');
+    //       navigate('/odinbook-frontend/login');
+    //     } else {
+    //       navigate('/odinbook-frontend/home');
+    //     }
+    //   });
+
+    if (!localStorage.getItem('user')) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      navigate('/odinbook-frontend/login');
+    } else {
+      navigate('/odinbook-frontend/home');
+    }
   });
 
   // useEffect(() => {
-  //   fetch("/auth/login/success", {
+  //   fetch("https://gautedl-odinbook.onrender.com/auth/login/success", {
   //     method: "GET",
   //     credentials: "include",
   //     headers: {
@@ -46,7 +55,13 @@ const StartupRouter = () => {
   //     });
   // })
 
-  return <></>;
+  return (
+    <>
+      <div className="center-screen">
+        <Loading />
+      </div>
+    </>
+  );
 };
 
 export default StartupRouter;

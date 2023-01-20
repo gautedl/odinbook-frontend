@@ -9,7 +9,7 @@ const UserCard = (props) => {
   const navigate = useNavigate();
 
   const goToUser = () => {
-    navigate(`/user/page/${props.user._id}`);
+    navigate(`/odinbook-frontend/user/page/${props.user._id}`);
   };
 
   const sendMsg = () => {};

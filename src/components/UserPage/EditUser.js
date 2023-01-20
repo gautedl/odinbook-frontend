@@ -19,15 +19,26 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
       const fd = new FormData();
       fd.append('profilePicture', file);
 
-      const response = await axios.post('/user/upload_profile_picture', fd, {});
+      const response = await axios.post(
+        `https://gautedl-odinbook.onrender.com/user/upload_profile_picture/${user._id}`,
+        fd,
+        {}
+      );
 
       if (response.data.msg === 'Updated') {
         let picRoute = JSON.parse(localStorage.getItem('user'));
-        picRoute.profilePicture.data = response.data.route;
-        picRoute.profilePicture.contentType = response.data.mimetype;
-        localStorage.setItem('user', JSON.stringify(picRoute));
+        if (picRoute.profilePicture) {
+          console.log('ye');
+          picRoute.profilePicture.data = response.data.route;
+          picRoute.profilePicture.contentType = response.data.mimetype;
+        } else {
+          picRoute.profilePicture = {
+            data: response.data.route,
+            contentType: response.data.mimetype,
+          };
+        }
 
-        fetch(`/user/get_current_user`)
+        fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
           .then((res) => res.json())
           .then((data) => {
             setUser(data);
@@ -43,21 +54,24 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
       about: aboutUser,
     };
 
-    fetch('/user/edit_about_user', {
-      method: 'POST',
-      body: JSON.stringify(req),
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(
+      `https://gautedl-odinbook.onrender.com/user/edit_about_user/${user._id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(req),
+        headers: {
+          //Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data === 'updated') {
           let curUser = JSON.parse(localStorage.getItem('user'));
           curUser.about = aboutUser;
           localStorage.setItem('user', JSON.stringify(curUser));
-          fetch(`/user/get_current_user`)
+          fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

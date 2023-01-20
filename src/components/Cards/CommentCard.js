@@ -16,7 +16,7 @@ const CommentCard = (props) => {
   const timePassed = dayjs(date).fromNow(true);
 
   const getLikes = () => {
-    fetch(`/comment/${props.id}/get_likes`)
+    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/get_likes`)
       .then((res) => res.json())
       .then((data) => setLikes(data));
   };
@@ -24,10 +24,15 @@ const CommentCard = (props) => {
   const likePost = (e) => {
     e.preventDefault();
 
-    fetch(`/comment/${props.id}/like`, {
+    const req = {
+      userId: userID,
+    };
+
+    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/like`, {
       method: 'POST',
+      body: JSON.stringify(req),
       headers: {
-        Authorization: token,
+        //Authorization: token,
         'Content-Type': 'application/json',
       },
     })
@@ -60,10 +65,15 @@ const CommentCard = (props) => {
   const dislikePost = (e) => {
     e.preventDefault();
 
-    fetch(`/comment/${props.id}/dislike`, {
+    const req = {
+      userId: userID,
+    };
+
+    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/dislike`, {
       method: 'POST',
+      body: JSON.stringify(req),
       headers: {
-        Authorization: token,
+        //Authorization: token,
         'Content-Type': 'application/json',
       },
     })

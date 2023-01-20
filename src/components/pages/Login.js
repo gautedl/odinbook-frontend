@@ -16,7 +16,7 @@ const Login = () => {
       password: selectedPassword,
     };
 
-    fetch(`/login`, {
+    fetch(`https://gautedl-odinbook.onrender.com/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -25,6 +25,7 @@ const Login = () => {
       },
     })
       .then((res) => {
+        console.log(res);
         if (res.status !== 200) {
           console.log('Error');
           return;
@@ -35,7 +36,7 @@ const Login = () => {
         // Stores the user credentials in locale storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/home');
+        navigate('/odinbook-frontend/home');
       });
   };
 
@@ -46,7 +47,7 @@ const Login = () => {
       password: 'tesUserPassword',
     };
 
-    fetch(`/login`, {
+    fetch(`https://gautedl-odinbook.onrender.com/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -65,7 +66,7 @@ const Login = () => {
         // Stores the user credentials in locale storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/home');
+        navigate('/odinbook-frontend/home');
       });
   };
 
@@ -135,7 +136,7 @@ const Login = () => {
         </form>
         <div className="sign-up">
           <p>Not a user?</p>{' '}
-          <Link className="link" to="/sign_up">
+          <Link className="link" to="/odinbook-frontend/sign_up">
             Sign up
           </Link>
         </div>

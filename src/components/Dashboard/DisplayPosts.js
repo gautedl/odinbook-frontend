@@ -6,25 +6,31 @@ import CreatePost from './CreatePost';
 const DisplayPosts = ({ user = null, route }) => {
   const [displayedPosts, setDisplayedPosts] = useState([]);
   const [num, setNum] = useState(5);
-  const [slicedArray, setSlicedArray] = useState(displayedPosts.slice(0, num));
+  const [slicedArray, setSlicedArray] = useState([]);
 
   const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
     if (route !== 'get_display_posts') {
-      fetch(`/post/get_user_post/${user._id}`)
+      fetch(
+        `https://gautedl-odinbook.onrender.com/post/get_user_post/${user._id}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setDisplayedPosts(data);
+          setSlicedArray(data.slice(0, 5));
         });
     } else if (route === 'get_display_posts') {
-      fetch(`/post/get_display_posts`)
+      fetch(
+        `https://gautedl-odinbook.onrender.com/post/get_display_posts/${loggedInUser._id}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setDisplayedPosts(data);
+          setSlicedArray(data.slice(0, 5));
         });
     }
-  }, [user._id, route]);
+  }, [user._id, route, loggedInUser._id]);
 
   useEffect(() => {
     setSlicedArray(displayedPosts.slice(0, num));

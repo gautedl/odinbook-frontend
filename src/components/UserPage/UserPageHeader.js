@@ -26,10 +26,15 @@ const UserPageHeader = ({ user, setUser }) => {
 
   useEffect(() => {
     const addFriend = () => {
-      fetch(`/friend_req/${id}/send_req`, {
+      const body = {
+        userId: userID,
+      };
+
+      fetch(`https://gautedl-odinbook.onrender.com/friend_req/${id}/send_req`, {
         method: 'POST',
+        body: JSON.stringify(body),
         headers: {
-          Authorization: token,
+          //Authorization: token,
           'Content-Type': 'application/json',
         },
       })
@@ -58,8 +63,9 @@ const UserPageHeader = ({ user, setUser }) => {
         });
     };
     const deleteReq = () => {};
-
-    fetch(`/friend_request/${id}/find`)
+    fetch(
+      `https://gautedl-odinbook.onrender.com/friend_request/${id}/find/${userID}`
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data === 'Not sent') {
@@ -123,7 +129,7 @@ const UserPageHeader = ({ user, setUser }) => {
           );
         }
       });
-  }, [id, token]);
+  }, [id, token, userID]);
 
   const profilePopup = (userPop) => {
     setShowPopup(true);
@@ -147,15 +153,26 @@ const UserPageHeader = ({ user, setUser }) => {
       const fd = new FormData();
       fd.append('profilePicture', file);
 
-      const response = await axios.post('/user/upload_profile_picture', fd, {});
+      const response = await axios.post(
+        `https://gautedl-odinbook.onrender.com/user/upload_profile_picture/${id}`,
+        fd,
+        {}
+      );
 
       if (response.data.msg === 'Updated') {
         let picRoute = JSON.parse(localStorage.getItem('user'));
-        picRoute.profilePicture.data = response.data.route;
-        picRoute.profilePicture.contentType = response.data.mimetype;
+        if (picRoute.profilePicture) {
+          picRoute.profilePicture.data = response.data.route;
+          picRoute.profilePicture.contentType = response.data.mimetype;
+        } else {
+          picRoute.profilePicture = {
+            data: response.data.route,
+            contentType: response.data.mimetype,
+          };
+        }
         localStorage.setItem('user', JSON.stringify(picRoute));
 
-        fetch(`/user/get_current_user`)
+        fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
           .then((res) => res.json())
           .then((data) => {
             setUser(data);

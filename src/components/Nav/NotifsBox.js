@@ -9,24 +9,35 @@ const NotifsBox = ({
   const [friendRequestNotifs, setFriendRequestNotifs] = useState();
 
   const token = `Bearer ${localStorage.getItem('token')}`;
+  const userId = localStorage.getItem('user')._id;
 
   useEffect(() => {
-    fetch('/friend_request/show_recipient')
+    fetch(
+      `https://gautedl-odinbook.onrender.com/friend_request/show_recipient/${userId}`
+    )
       .then((res) => res.json())
       .then((data) => {
         // setFriendRequestNotifs(data);
         setFriendRequestNotifs(data.filter((req) => req.status === 'pending'));
       });
-  }, []);
+  }, [userId]);
 
   const acceptRequest = (senderId) => {
-    fetch(`/friend_req/accept/${senderId}`, {
-      method: 'POST',
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    })
+    const body = {
+      userId: userId,
+    };
+
+    fetch(
+      `https://gautedl-odinbook.onrender.com/friend_req/accept/${senderId}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          //Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data === 'accepted') {
@@ -38,13 +49,21 @@ const NotifsBox = ({
   };
 
   const declineRequest = (senderId) => {
-    fetch(`/friend_req/reject/${senderId}`, {
-      method: 'POST',
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    })
+    const body = {
+      userId: userId,
+    };
+
+    fetch(
+      `https://gautedl-odinbook.onrender.com/friend_req/reject/${senderId}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+          //Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data === 'rejected') {

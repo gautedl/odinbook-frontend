@@ -12,11 +12,15 @@ function App() {
       <div className="body">
         <Router>
           <Routes>
-            <Route path="/" element={<StartupRouter />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign_up" element={<SignUp />} />
-            <Route path="/user/page/:id" element={<UserPage />} />
+            {/* <Route path="/" element={<StartupRouter />} /> */}
+            <Route path="/odinbook-frontend" element={<StartupRouter />} />
+            <Route path="/odinbook-frontend/home" element={<Home />} />
+            <Route path="/odinbook-frontend/login" element={<Login />} />
+            <Route path="/odinbook-frontend/sign_up" element={<SignUp />} />
+            <Route
+              path="/odinbook-frontend/user/page/:id"
+              element={<UserPage />}
+            />
           </Routes>
         </Router>
       </div>

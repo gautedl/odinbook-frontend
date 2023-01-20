@@ -11,7 +11,7 @@ const SearchBox = ({ srcValue }) => {
   useEffect(() => {
     const body = { search_name: srcValue };
 
-    fetch('/search_user', {
+    fetch('https://gautedl-odinbook.onrender.com/search_user', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' },
@@ -53,7 +53,9 @@ const SearchBox = ({ srcValue }) => {
                 return (
                   <li id="search" key={data._id}>
                     <ProfilePicture user={data} />
-                    <Link to={`/user/page/${data._id}`}>{data.name}</Link>
+                    <Link to={`/odinbook-frontend/user/page/${data._id}`}>
+                      {data.name}
+                    </Link>
                   </li>
                 );
               }

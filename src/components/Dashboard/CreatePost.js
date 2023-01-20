@@ -15,14 +15,17 @@ const CreatePost = ({ setDisplayedPosts, displayedPosts }) => {
     const newPost = {
       text: post,
     };
-    fetch('/post/create_new_post', {
-      method: 'POST',
-      body: JSON.stringify(newPost),
-      headers: {
-        Authorization: token,
-        'Content-Type': 'application/json',
-      },
-    })
+    fetch(
+      `https://gautedl-odinbook.onrender.com/post/create_new_post/${user._id}`,
+      {
+        method: 'POST',
+        body: JSON.stringify(newPost),
+        headers: {
+          //Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.message !== 'posted') {

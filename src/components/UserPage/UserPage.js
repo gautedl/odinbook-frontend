@@ -10,7 +10,7 @@ const UserPage = () => {
   const [user, setUser] = useState();
 
   useEffect(() => {
-    fetch(`/home/user/${id}`)
+    fetch(`https://gautedl-odinbook.onrender.com/home/user/${id}`)
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, [id]);

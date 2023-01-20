@@ -83,19 +83,21 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
-    fetch('/friend_request/show_recipient')
+    fetch(
+      `https://gautedl-odinbook.onrender.com/friend_request/show_recipient/${user._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        // Set so only pending is beeing counter
+        // Set so only pending is beeing counted
         const length = data.filter((x) => x.status === 'pending').length;
         setFriendRequestNotifsLength(length);
         setFriendRequestNotifs(<div className="notifs-quantity">{length}</div>);
       });
-  }, []);
+  }, [user._id]);
 
   return (
     <nav className="nav-container">
-      <Link to="/home" className="nav-title">
+      <Link to="/odinbook-frontend/home" className="nav-title">
         <h1>OdinBook</h1>
       </Link>
       <div className="search-container">

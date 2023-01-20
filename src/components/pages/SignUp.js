@@ -21,7 +21,7 @@ const SignUp = () => {
       confirmPassword: selectedConfirmPassword,
     };
 
-    fetch('/sign_up', {
+    fetch('https://gautedl-odinbook.onrender.com/sign_up', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -38,7 +38,7 @@ const SignUp = () => {
           setErrorMsg(<p className="err-msg">{user[0].msg}</p>);
           return;
         } else {
-          navigate('/login');
+          navigate('/odinbook-frontend/login');
         }
       });
   };

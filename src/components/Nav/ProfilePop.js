@@ -6,15 +6,19 @@ const ProfilePop = ({ open }) => {
   const navigate = useNavigate();
 
   const logOut = () => {
-    fetch('/log_out')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data === 'logged out') {
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          navigate('/');
-        }
-      });
+    // fetch('https://gautedl-odinbook.onrender.com/log_out')
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data === 'logged out') {
+    //       localStorage.removeItem('token');
+    //       localStorage.removeItem('user');
+    //       navigate('/odinbook-frontend/');
+    //     }
+    //   });
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/odinbook-frontend/');
   };
 
   return (
@@ -24,7 +28,7 @@ const ProfilePop = ({ open }) => {
       ) : (
         <div className="profile-box" id="profile-pic">
           <ul>
-            <Link to={`/user/page/${user._id}`}>
+            <Link to={`/odinbook-frontend/user/page/${user._id}`}>
               <li>
                 <ProfilePicture user={user} showLink={false} />
                 <h3>{user.name}</h3>
@@ -47,7 +51,7 @@ const ProfilePop = ({ open }) => {
                 <h3>Settings</h3>
               </li>
       </Link>*/}
-            <Link to="/home">
+            <Link to="/odinbook-frontend/home">
               <li>
                 <h1 className="ob">OB</h1>
                 <h3>Home</h3>
