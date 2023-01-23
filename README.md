@@ -1,6 +1,6 @@
 # Frontend for OdinBook
 
-**Live application at [OdinBook](https://gautedl.github.io/odinbook-frontend/)**
+**Live application at <a href="https://gautedl.github.io/odinbook-frontend/" target="_blank">OdinBook</a>**
 
 **Repo for backend, [here](https://github.com/gautedl/odinbook-api)**
 
@@ -21,3 +21,5 @@ The app is still under production.
 - Messaging
 - Storing user session with cookies
 - ...
+
+Last project of the Odin Project Node.js course
