@@ -20,7 +20,7 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
       fd.append('profilePicture', file);
 
       const response = await axios.post(
-        `https://gautedl-odinbook.onrender.com/user/upload_profile_picture/${user._id}`,
+        `/user/upload_profile_picture/${user._id}`,
         fd,
         {}
       );
@@ -37,7 +37,7 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
           };
         }
 
-        fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
+        fetch(`/home/user/${user._id}`)
           .then((res) => res.json())
           .then((data) => {
             setUser(data);
@@ -53,24 +53,21 @@ const EditUser = ({ user, showEditUser, setShowEditUser, setUser }) => {
       about: aboutUser,
     };
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/user/edit_about_user/${user._id}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(req),
-        headers: {
-          //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/user/edit_about_user/${user._id}`, {
+      method: 'POST',
+      body: JSON.stringify(req),
+      headers: {
+        //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data === 'updated') {
           let curUser = JSON.parse(localStorage.getItem('user'));
           curUser.about = aboutUser;
           localStorage.setItem('user', JSON.stringify(curUser));
-          fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
+          fetch(`/home/user/${user._id}`)
             .then((res) => res.json())
             .then((data) => {
               setUser(data);

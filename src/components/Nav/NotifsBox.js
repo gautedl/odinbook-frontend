@@ -8,13 +8,10 @@ const NotifsBox = ({
 }) => {
   const [friendRequestNotifs, setFriendRequestNotifs] = useState();
 
-  const token = `Bearer ${localStorage.getItem('token')}`;
   const userId = localStorage.getItem('user')._id;
 
   useEffect(() => {
-    fetch(
-      `https://gautedl-odinbook.onrender.com/friend_request/show_recipient/${userId}`
-    )
+    fetch(`/friend_request/show_recipient/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         // setFriendRequestNotifs(data);
@@ -27,17 +24,14 @@ const NotifsBox = ({
       userId: userId,
     };
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/friend_req/accept/${senderId}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/friend_req/accept/${senderId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data === 'accepted') {
@@ -53,17 +47,14 @@ const NotifsBox = ({
       userId: userId,
     };
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/friend_req/reject/${senderId}`,
-      {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-          //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/friend_req/reject/${senderId}`, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data === 'rejected') {

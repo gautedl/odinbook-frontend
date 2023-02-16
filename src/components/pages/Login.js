@@ -16,7 +16,7 @@ const Login = () => {
       password: selectedPassword,
     };
 
-    fetch(`https://gautedl-odinbook.onrender.com/login`, {
+    fetch(`/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {
@@ -46,7 +46,7 @@ const Login = () => {
       password: 'tesUserPassword',
     };
 
-    fetch(`https://gautedl-odinbook.onrender.com/login`, {
+    fetch(`/login`, {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

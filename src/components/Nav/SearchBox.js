@@ -11,7 +11,7 @@ const SearchBox = ({ srcValue }) => {
   useEffect(() => {
     const body = { search_name: srcValue };
 
-    fetch('https://gautedl-odinbook.onrender.com/search_user', {
+    fetch('/search_user', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' },

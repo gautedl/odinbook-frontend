@@ -12,18 +12,14 @@ const DisplayPosts = ({ user = null, route }) => {
 
   useEffect(() => {
     if (route !== 'get_display_posts') {
-      fetch(
-        `https://gautedl-odinbook.onrender.com/post/get_user_post/${user._id}`
-      )
+      fetch(`/post/get_user_post/${user._id}`)
         .then((res) => res.json())
         .then((data) => {
           setDisplayedPosts(data);
           setSlicedArray(data.slice(0, 5));
         });
     } else if (route === 'get_display_posts') {
-      fetch(
-        `https://gautedl-odinbook.onrender.com/post/get_display_posts/${loggedInUser._id}`
-      )
+      fetch(`/post/get_display_posts/${loggedInUser._id}`)
         .then((res) => res.json())
         .then((data) => {
           setDisplayedPosts(data);

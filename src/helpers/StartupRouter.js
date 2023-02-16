@@ -6,7 +6,7 @@ const StartupRouter = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // fetch('https://gautedl-odinbook.onrender.com/user/isLoggedIn')
+    // fetch('/user/isLoggedIn')
     //   .then((res) => res.json())
     //   .then((data) => {
     //     if (data !== 'Logged in') {
@@ -28,7 +28,7 @@ const StartupRouter = () => {
   });
 
   // useEffect(() => {
-  //   fetch("https://gautedl-odinbook.onrender.com/auth/login/success", {
+  //   fetch("/auth/login/success", {
   //     method: "GET",
   //     credentials: "include",
   //     headers: {

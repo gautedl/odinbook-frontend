@@ -7,11 +7,10 @@ const SideBar = (props) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetch(`https://gautedl-odinbook.onrender.com/user/getFriends/${user._id}`)
+    fetch(`/user/getFriends/${user._id}`)
       .then((res) => res.json())
       .then((data) => {
         setUserFriends(data);
-        console.log(data);
       });
   }, [user._id]);
 

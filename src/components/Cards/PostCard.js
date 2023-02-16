@@ -16,7 +16,7 @@ const PostCard = (props) => {
   const curUser = JSON.parse(localStorage.getItem('user'));
 
   useEffect(() => {
-    fetch(`https://gautedl-odinbook.onrender.com/home/user/${props.user._id}`)
+    fetch(`/home/user/${props.user._id}`)
       .then((res) => res.json())
       .then((data) => setUser(data));
   }, [props.user]);
@@ -31,7 +31,7 @@ const PostCard = (props) => {
   });
 
   const getLikes = () => {
-    fetch(`https://gautedl-odinbook.onrender.com/post/${props.id}/get_likes`)
+    fetch(`/post/${props.id}/get_likes`)
       .then((res) => res.json())
       .then((data) => setLikes(data));
   };
@@ -39,16 +39,13 @@ const PostCard = (props) => {
   const likePost = (e) => {
     e.preventDefault();
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/post/${props.id}/like_post/${userID}`,
-      {
-        method: 'POST',
-        headers: {
-          // //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/post/${props.id}/like_post/${userID}`, {
+      method: 'POST',
+      headers: {
+        // //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data !== 'Liked!') {
@@ -76,16 +73,13 @@ const PostCard = (props) => {
   const dislikePost = (e) => {
     e.preventDefault();
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/post/${props.id}/dislike_post/${userID}`,
-      {
-        method: 'POST',
-        headers: {
-          // //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/post/${props.id}/dislike_post/${userID}`, {
+      method: 'POST',
+      headers: {
+        // //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data !== 'Disliked!') {
@@ -150,17 +144,14 @@ const PostCard = (props) => {
       userId: userID,
     };
 
-    fetch(
-      `https://gautedl-odinbook.onrender.com/comment/${props.id}/create_comment`,
-      {
-        method: 'POST',
-        body: JSON.stringify(newComment),
-        headers: {
-          //Authorization: token,
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`/comment/${props.id}/create_comment`, {
+      method: 'POST',
+      body: JSON.stringify(newComment),
+      headers: {
+        //Authorization: token,
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.msg !== 'posted') {

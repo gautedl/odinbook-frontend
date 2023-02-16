@@ -6,7 +6,7 @@ const ProfilePop = ({ open }) => {
   const navigate = useNavigate();
 
   const logOut = () => {
-    // fetch('https://gautedl-odinbook.onrender.com/log_out')
+    // fetch('/log_out')
     //   .then((res) => res.json())
     //   .then((data) => {
     //     console.log(data);

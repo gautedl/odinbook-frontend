@@ -133,6 +133,11 @@
                     gap: 5px;
                     white-space: nowrap;
                 }
+
+                .second-btn-container {
+                    display: flex;
+                    gap: 10px;
+                }
             }
         }
     }
@@ -330,6 +335,8 @@
                 font-size: 1.1em;
             }
 
+            
+
         }
 
         
@@ -391,6 +398,11 @@
                             svg {
                                 height: 15px;
                             }
+                        }
+                        .second-btn-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
                         }
                     }
                 }
@@ -518,7 +530,12 @@
                         margin-left: 0px;
                         button {
                             font-size: .8em;
-                            
+                        }
+
+                        .second-btn-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
                         }
                     }
                 }
