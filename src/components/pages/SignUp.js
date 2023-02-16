@@ -21,7 +21,7 @@ const SignUp = () => {
       confirmPassword: selectedConfirmPassword,
     };
 
-    fetch('https://gautedl-odinbook.onrender.com/sign_up', {
+    fetch('/sign_up', {
       method: 'POST',
       body: JSON.stringify(user),
       headers: {

@@ -16,7 +16,7 @@ const CommentCard = (props) => {
   const timePassed = dayjs(date).fromNow(true);
 
   const getLikes = () => {
-    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/get_likes`)
+    fetch(`/comment/${props.id}/get_likes`)
       .then((res) => res.json())
       .then((data) => setLikes(data));
   };
@@ -28,7 +28,7 @@ const CommentCard = (props) => {
       userId: userID,
     };
 
-    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/like`, {
+    fetch(`/comment/${props.id}/like`, {
       method: 'POST',
       body: JSON.stringify(req),
       headers: {
@@ -69,7 +69,7 @@ const CommentCard = (props) => {
       userId: userID,
     };
 
-    fetch(`https://gautedl-odinbook.onrender.com/comment/${props.id}/dislike`, {
+    fetch(`/comment/${props.id}/dislike`, {
       method: 'POST',
       body: JSON.stringify(req),
       headers: {

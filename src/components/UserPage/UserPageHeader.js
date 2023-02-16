@@ -4,6 +4,7 @@ import UserCard from '../Cards/UserCard';
 import axios from 'axios';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
 import EditUser from './EditUser';
+import Loading from '../HelperComponents/Loading';
 
 const UserPageHeader = ({ user, setUser }) => {
   const { id } = useParams();
@@ -30,7 +31,7 @@ const UserPageHeader = ({ user, setUser }) => {
         userId: userID,
       };
 
-      fetch(`https://gautedl-odinbook.onrender.com/friend_req/${id}/send_req`, {
+      fetch(`/friend_req/${id}/send_req`, {
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
@@ -63,9 +64,7 @@ const UserPageHeader = ({ user, setUser }) => {
         });
     };
     const deleteReq = () => {};
-    fetch(
-      `https://gautedl-odinbook.onrender.com/friend_request/${id}/find/${userID}`
-    )
+    fetch(`/friend_request/${id}/find/${userID}`)
       .then((res) => res.json())
       .then((data) => {
         if (data === 'Not sent') {
@@ -154,7 +153,7 @@ const UserPageHeader = ({ user, setUser }) => {
       fd.append('profilePicture', file);
 
       const response = await axios.post(
-        `https://gautedl-odinbook.onrender.com/user/upload_profile_picture/${id}`,
+        `/user/upload_profile_picture/${id}`,
         fd,
         {}
       );
@@ -172,7 +171,7 @@ const UserPageHeader = ({ user, setUser }) => {
         }
         localStorage.setItem('user', JSON.stringify(picRoute));
 
-        fetch(`https://gautedl-odinbook.onrender.com/home/user/${user._id}`)
+        fetch(`/home/user/${user._id}`)
           .then((res) => res.json())
           .then((data) => {
             setUser(data);
@@ -183,12 +182,14 @@ const UserPageHeader = ({ user, setUser }) => {
     }
   };
 
+  const sendMessage = () => {};
+
   return (
     <>
       <div className="user-page-header">
         <div></div>
         {user === undefined ? (
-          <></>
+          <Loading />
         ) : (
           <div className="user-container">
             <div className="profile-header">
@@ -289,7 +290,25 @@ const UserPageHeader = ({ user, setUser }) => {
                     Edit Profile
                   </button>
                 ) : FriendReqBtn !== undefined ? (
-                  FriendReqBtn
+                  <div className="second-btn-container">
+                    {FriendReqBtn}
+                    <button onClick={sendMessage}>
+                      {
+                        <svg
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                        </svg>
+                      }
+                      Message
+                    </button>
+                  </div>
                 ) : (
                   <></>
                 )}

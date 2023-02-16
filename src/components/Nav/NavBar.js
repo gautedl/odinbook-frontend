@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { defaultUserPicNav } from '../../assets/SVG/svg';
 import ProfilePicture from '../HelperComponents/ProfilePicture';
+import MessagesPop from './MessagesPop';
 import NotifsBox from './NotifsBox';
 import ProfilePop from './ProfilePop';
 import SearchBox from './SearchBox';
@@ -17,6 +18,7 @@ const NavBar = () => {
   const [showAlerts, setShowAlerts] = useState();
   const [showProfilePop, setShowProfilePop] = useState();
   const [showSettings, setShowSettings] = useState();
+  const [showMessages, setShowMessages] = useState();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const searchUser = (e) => {
@@ -61,6 +63,15 @@ const NavBar = () => {
     }
   };
 
+  const showMessagesHandler = (e) => {
+    if (showMessages === undefined) {
+      setShowMessages(<MessagesPop open={true} user={user} />);
+    } else {
+      setShowMessages(undefined);
+      <MessagesPop open={false} />;
+    }
+  };
+
   const handleWindowClick = (e) => {
     if (e.target.id !== 'notif') {
       setShowAlerts(undefined);
@@ -71,6 +82,10 @@ const NavBar = () => {
     }
     if (e.target.id !== 'settings') {
       setShowSettings(undefined);
+    }
+    if (e.target.id !== 'messages') {
+      setShowMessages(undefined);
+      <MessagesPop open={false} />;
     }
   };
 
@@ -83,9 +98,7 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      `https://gautedl-odinbook.onrender.com/friend_request/show_recipient/${user._id}`
-    )
+    fetch(`/friend_request/show_recipient/${user._id}`)
       .then((res) => res.json())
       .then((data) => {
         // Set so only pending is beeing counted
@@ -130,6 +143,28 @@ const NavBar = () => {
         )}
       </div>
       <div className="route-container">
+        <div className="chat-container">
+          <div className="chat">
+            <svg
+              id="messages"
+              onClick={showMessagesHandler}
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="1"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            {showMessages === undefined ? (
+              <></>
+            ) : (
+              <div className="messages-pop">{showMessages}</div>
+            )}
+          </div>
+        </div>
         <div className="settings-container">
           <div className="setting">
             <svg

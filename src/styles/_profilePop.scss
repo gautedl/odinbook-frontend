@@ -2,81 +2,82 @@
 @import './mixins';
 
 .profile-box {
-    @include themed() {
-        background-color: t("fourth-bg-color");
-        color: t("main-text-color");
-    }
-    width: 200px;
-    border: none;
-    // background-color: $fourth-bg-color;
-    box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+  @include themed() {
+    background-color: t('fourth-bg-color');
+    color: t('main-text-color');
+  }
+  width: 200px;
+  border: none;
+  // background-color: $fourth-bg-color;
+  box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
 
+  ul {
+    margin: 0px 0px;
+    padding: 0px;
+    li {
+      display: flex;
+      // grid-template-columns: 1fr 3fr;
+      gap: 15px;
+      align-items: center;
+      list-style: none;
+      padding: 10px 10px;
+      padding-left: 5px;
+      cursor: pointer;
+
+      .btn-container {
+        display: flex;
+        gap: 10px;
+
+        .accept {
+          background-color: rgb(61, 194, 61);
+          border-radius: 50%;
+          padding: 2px;
+        }
+
+        .decline {
+          background-color: rgb(245, 61, 61);
+          border-radius: 50%;
+          padding: 2px;
+        }
+
+        svg,
+        img {
+          @include themed() {
+            background-color: t('secondary-bg-color');
+          }
+          height: 30px;
+        }
+
+        svg:hover {
+          filter: brightness(0.8);
+        }
+      }
+    }
+
+    li:hover {
+      @include themed() {
+        background-color: t('secondary-bg-color');
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
+
+  @media only screen and (min-width: 1921px) {
+    width: 300px;
     ul {
-        margin: 0px 0px;
-        padding: 0px;
-        li {
-            display: flex;
-            // grid-template-columns: 1fr 3fr;
-            gap: 15px;
-            align-items: center;
-            list-style: none;
-            padding: 10px 10px;
-            padding-left: 5px;
-            cursor: pointer;
+      li {
+        font-size: 1.5em;
 
-            .btn-container {
-                display: flex;
-                gap: 10px;
-
-                .accept {
-                    background-color: rgb(61, 194, 61);
-                    border-radius: 50%;
-                    padding: 2px;
-                }
-                
-                .decline {
-                    background-color: rgb(245, 61, 61);
-                    border-radius: 50%;
-                    padding: 2px;
-                }
-
-                svg, img {
-                    @include themed() {
-                        background-color: t("secondary-bg-color");
-                    };
-                    height: 30px;
-                }
-
-                svg:hover {
-                    filter: brightness(.8);
-                }
-            }
-        
+        .btn-container {
+          svg,
+          img {
+            height: 50px;
+          }
         }
-
-        li:hover {
-            filter: brightness(1.2);
-        }
+      }
     }
-    
-    @media (max-width: 768px) {
-        width: 150px;
-
-        
-    }
-
-    @media only screen and (min-width : 1921px) {
-        width: 300px;
-        ul {
-            li {
-                font-size: 1.5em;
-
-                .btn-container {
-                    svg, img {
-                        height: 50px;
-                    }
-                }
-            }
-        }
-    }
+  }
 }
